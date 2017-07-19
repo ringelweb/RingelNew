@@ -1,4 +1,5 @@
 <!-- Footer -->
+
 <footer class="container-fluid bg-4 text-center navbar navbar-default">
 <br>  <p>Sponsered By <a href="../index.html">www.RingelWeb.com</a></p>
 </footer>
