@@ -89,7 +89,7 @@ if(isset($_POST['buyer_reg'])){
 
 <div class="row">
 
-  <div class="col-sm-6 div-hover div-pad">
+  <div class="col-sm-6 div-hover div-pad" style=" padding-bottom: 90px;">
   <H1>WELCOME TO RINGEL</H1>
    <p>BROUGHT TO YOUO BY RINGELWEB.COM</p>
       <p>A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.</p>
