@@ -15,7 +15,6 @@ require 'register_handler.php';
 <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<?php include ("includes/header.php") ?>
 
 
 <div class="container"style="margin-top:50px;">
@@ -266,10 +265,10 @@ require 'register_handler.php';
 		  </div>
 		   <div class=" col-sm-8">
 					
-			  			<input name="org_email" placeholder="xyz@gmail.com" class="form-control zero-left form-group" type="text"
+			  			<input name="owner_email" placeholder="xyz@gmail.com" class="form-control zero-left form-group" type="text"
 			  			value="<?php 
-						if(isset($_SESSION['org_email'])) {
-							echo $_SESSION['org_email'];
+						if(isset($_SESSION['owner_email'])) {
+							echo $_SESSION['owner_email'];
 							} 
 							?>" required>
 							<br>
