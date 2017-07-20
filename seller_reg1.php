@@ -20,7 +20,7 @@ require 'register_handler.php';
 <div class="container"style="margin-top:50px;">
   <div class="row">
 	  <div class="text-center">
-	  <h3><u>Seller Registration Page</u></h3>
+	  <h2>Seller Registration</h2>
 	  </div>
 	   <form class="form-horizontal" id = "sell_reg" action="seller_reg1.php" method="POST" enctype="multipart/form-data">
 
@@ -30,7 +30,7 @@ require 'register_handler.php';
 
   
 	  <div class="col-sm-6 div-hover">
-		  <h3>Store Details</h3>
+		  <h3 class="well text-center">Store Details</h3>
 		  <br>
 		   <div class="row">
 		  <div class=" col-sm-3">
@@ -167,7 +167,7 @@ require 'register_handler.php';
 <!-- mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
 	
 	  <div class="col-sm-6 div-hover">
-		  <h3>Seller Personal Details</h3>
+		  <h3 class="well text-center">Personal Details</h3>
 		  <br>
 		  <div class="row">
 		  <div class="col-sm-3">
