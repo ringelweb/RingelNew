@@ -1,4 +1,5 @@
 <!-- Navbar -->
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -7,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><strong><i class="glyphicon glyphicon-home xx"> RINGEL</i></strong></a>
+      <a class="navbar-brand" href="index.php"><strong><i class="glyphicon glyphicon-home xx"> RINGEL</i></strong></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -20,10 +21,25 @@
                     <li><a href = "logout_script.php"><span class = "glyphicon glyphicon-log-out"></span> Logout</a></li>
                    
                     <?php
-                } else {
-                    ?>
+                }else if(isset($_SESSION['buyer_user_name'])) { ?>
+				     <li><a href = "home1.php"><span class = "glyphicon glyphicon-home"></span> Home </a></li>
+                     <li><a href = "buyer_account.php"><span class = "glyphicon glyphicon-cog"></span> Settings </a></li>
+                    <li><a href = "buyer_profile.php"><span class = "glyphicon glyphicon-user"></span> Profile</a></li>
+					 <li><a href = "logout_script.php"><span class = "glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    <?php } else {?>
                        <li><a data-toggle="modal" data-target="#loginModal" href="#"><i class="glyphicon glyphicon-log-in x"> Login</i></a></li>
-                     <?php }?>
+                    <?php }?>
+					   <?php
+                       $currentpage = $_SERVER['REQUEST_URI'];
+					   //$currentpage=="/RingelNew/index.php"    to be change later
+                       if (!($currentpage=="/" || $currentpage=="/RingelNew/index.php" || $currentpage=="" )) {?>
+                      <li><a  href="index.php"><i class="glyphicon glyphicon-user x"> <?php echo "Register" ?></i></a></li>
+					  <?php
+                         }
+                        ?>
+						
+                                        
+					
       </ul>
     </div>
   </div>

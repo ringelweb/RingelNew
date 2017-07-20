@@ -89,14 +89,21 @@ if(isset($_POST['buyer_reg'])){
 
 <div class="row">
 
-  <div class="col-sm-6 div-hover div-pad" style=" padding-bottom: 90px;">
-  <H1>WELCOME TO RINGEL</H1>
+  <div class="col-sm-6 div-hover div-pad" style="padding-bottom:80px" >
+  <H1>WELCOME TO RINGEL <img src="img/icons/favicon.png"></H1>
    <p>BROUGHT TO YOUO BY RINGELWEB.COM</p>
-      <p>A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.</p>
- <a href="seller_reg1.php"><button class="btn btn-primary" >SELLER REGISTRATION</button></a>
+    
+	<p>A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.A new Concept to make E-commerce more interesting.</p>
+ <div class="text-center" style="margin-top:15px;">
+ <a href="seller_reg1.php" >
+        <img src="img/icons/shop.png" width="100px">
+	    <img src="img/icons/reg-btn.png" width="100px">
+</a>
+</div>
+	
   </div>
   <div class="col-sm-5  col-sm-offset-1 text-center div-hover div-pad">
- 
+ <img src="img/icons/register.png" width="100px">
   <h3>Buyer Registration</h3><hr>
 
  <form   method="get" onSubmit="return check();" name="buyer_reg" action="index.php">

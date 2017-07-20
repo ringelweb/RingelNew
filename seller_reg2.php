@@ -83,8 +83,9 @@ if(isset($_POST['user_reg'])){
 <?php include ("includes/header.php") ?>
             
 
-		<div class="container margin-container  div-hover"  stylee=>
-		  <div class="col-sm-9 col-sm-offset-3"style="margin-top:40px;padding-left:50px"><h2>Create Username and Password</h2></div>
+		<div class="container margin-container  div-hover">
+	<center>	<img src="img/icons/security.png" width="200px"></center>
+		  <div class="col-sm-9 col-sm-offset-3"style="padding-left:90px;"><h3>Create Username and Password</h3></div>
 		  <form class="form-horizontal col-sm-9 col-sm-offset-3" id = "" action="seller_reg2.php" method="POST">
 		
 		  <br>
@@ -143,7 +144,7 @@ if(isset($_POST['user_reg'])){
 		   
 		  </form>
 		</div>
-		<br><br><br><br><br><br><br><br>
+		<br><br>
             <?php include 'includes/footer.php'; ?>
 	</body>
 	
