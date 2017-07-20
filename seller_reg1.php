@@ -15,7 +15,7 @@ require 'register_handler.php';
 <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-
+<?php include ("includes/header.php") ?>
 
 <div class="container"style="margin-top:50px;">
   <div class="row">
@@ -166,7 +166,7 @@ require 'register_handler.php';
 </div>
 <!-- mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
 	
-	  <div class="col-sm-6 div-hover">
+	  <div class="col-sm-6 div-hover" style="padding-bottom: 65px;">
 		  <h3 class="well text-center">Personal Details</h3>
 		  <br>
 		  <div class="row">
@@ -282,15 +282,17 @@ require 'register_handler.php';
 		   </div>  
 		   
 		   	     <div class="col-sm-3"  style="float:right;margin-right:20px">
-				 <input type="submit" class="btn btn-lg btn-primary " value="NEXT>" name="sell_reg">
+			 
 				 </div> 
-
+			
 
 				</div> 
-	  
+
 		  </div>
 		        
-		
+			  	 <center>
+<input type="submit" class="btn btn-primary " value="Next" name="sell_reg" style="width:200px;margin-top:30px">
+</center>
 		      
 				
 	</form>
