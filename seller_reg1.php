@@ -192,7 +192,7 @@ require 'register_handler.php';
 
 
                  <div class="radio">
-                    <input id="male" name="gender" value="Male" type="radio" class="radio-inline">
+                    <input checked id="male" name="gender" value="Male" type="radio" class="radio-inline">
                      <label for="male" class="radio-label">Male </label> 
                   </div>
              

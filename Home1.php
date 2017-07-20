@@ -10,3 +10,8 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 </head>
+<body>
+<?php include("includes/header.php")?>
+<?php include("includes/footer.php")?>
+</body>
+<html>
