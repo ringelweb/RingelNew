@@ -128,15 +128,25 @@ margin-left:0px !important;
 }
 .side-panel-home{
 	
+	
 }
 .product-name{
 	font-size: 2.5em;
     font-family: -webkit-pictograph;
+	    color: #858c90;
 }
 .button-edge-round{
-	border-radius:5px;
+	
+}
+.comment_section{
+	    color: #858c90;
 }
 
+.link:hover{
+text-decoration:underline;
+cursor:pointer;
+	
+}
 
 
 
