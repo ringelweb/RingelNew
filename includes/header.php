@@ -28,15 +28,16 @@
 					 <li><a href = "logout_script.php"><span class = "glyphicon glyphicon-log-out"></span> Logout</a></li>
                     <?php } else {?>
                        <li><a data-toggle="modal" data-target="#loginModal" href="#"><i class="glyphicon glyphicon-log-in x"> Login</i></a></li>
-                    <?php }?>
-					   <?php
+                <?php
                        $currentpage = $_SERVER['REQUEST_URI'];
 					   //$currentpage=="/RingelNew/index.php"    to be change later
                        if (!($currentpage=="/" || $currentpage=="/RingelNew/index.php" || $currentpage=="" )) {?>
                       <li><a  href="index.php"><i class="glyphicon glyphicon-user x"> <?php echo "Register" ?></i></a></li>
 					  <?php
                          }
-                        ?>
+                        ?>      
+				   <?php }?>
+					
 						
                                         
 					

@@ -22,17 +22,12 @@ require 'register_handler.php';
 	  <div class="text-center">
 	  <h2>Seller Registration</h2>
 	  </div>
-	   <form class="form-horizontal" id = "sell_reg" action="seller_reg1.php" method="POST" enctype="multipart/form-data">
+<form class="form-horizontal" id = "sell_reg" action="seller_reg1.php" method="POST" enctype="multipart/form-data">
 
-
-
-
-
-  
-	  <div class="col-sm-6 div-hover">
+<div class="col-sm-6 div-hover">
 		  <h3 class="well text-center">Store Details</h3>
 		  <br>
-		   <div class="row">
+		    <div class="row">
 		  <div class=" col-sm-3">
 	   <label class="control-label " >Store Name:</label>
 		  </div>
@@ -46,14 +41,7 @@ require 'register_handler.php';
 							?>" required>
 		  </div>
 	  </div>
-
-
-
-
-
-
-
-   <div class="row">
+            <div class="row">
 		  <div class=" col-sm-3">
 	  	<label class="control-label  " >Category:</label>
 		  </div>
@@ -65,10 +53,7 @@ require 'register_handler.php';
 							?>" required>
 		  </div>
 	  </div>
-
-
-
-   <div class="row">
+            <div class="row">
 		  <div class=" col-sm-3">
 	   <label class="control-label  ">Store Address:</label>
 		  </div>
@@ -76,9 +61,7 @@ require 'register_handler.php';
 				 	<textarea class="form-control zero-left form-group" rows="2"  name="org_address"  required></textarea>
 		  </div>
 	  </div>
-
-
-        <div class="row">
+            <div class="row">
 		  <div class=" col-sm-3">
 	     <label class="control-label ">Contact:</label>
 		  </div>
@@ -93,9 +76,7 @@ require 'register_handler.php';
 						 ?>
 		  </div>
 	  </div>
-
-
-	    <div class="row">
+            <div class="row">
 		  <div class=" col-sm-3">
 	  
 			      <label class="control-label   ">Store Email:</label>
@@ -112,9 +93,6 @@ require 'register_handler.php';
 						 else if(in_array("INAVLID FORMAT!<br>", $error_array))  echo "INAVLID FORMAT!<br>";?>
 		  </div>
 	  </div>
-
-
-
 	    <div class="row">
 		  <div class=" col-sm-3">
 	  
@@ -130,8 +108,6 @@ require 'register_handler.php';
 
 		  </div>
 	  </div>
-
-
 	    <div class="row">
 		  <div class=" col-sm-3">
 	  
@@ -146,11 +122,6 @@ require 'register_handler.php';
                                                </div>
 		  </div>
 	         </div>
-
-
-
-
-
        <div class="row">
 		  <div class=" col-sm-3">
 	  
@@ -162,10 +133,8 @@ require 'register_handler.php';
 			  		<input type="text" class="form-control zero-left form-group" name="org_description" placeholder="About your store"  required>
 		  </div>
 	     </div>
-
 </div>
 <!-- mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
-	
 	  <div class="col-sm-6 div-hover" style="padding-bottom: 65px;">
 		  <h3 class="well text-center">Personal Details</h3>
 		  <br>
@@ -215,7 +184,6 @@ require 'register_handler.php';
 
 
 		  </div>
-
 <br>
 		    <div class="row">
 		  <div class=" col-sm-3">
@@ -280,51 +248,19 @@ require 'register_handler.php';
 		 
 		 </div>
 		   </div>  
-		   
-		   	     <div class="col-sm-3"  style="float:right;margin-right:20px">
-			 
-				 </div> 
 			
-
 				</div> 
 
-		  </div>
 		        
-			  	 <center>
-<input type="submit" class="btn btn-primary " value="Next" name="sell_reg" style="width:200px;margin-top:30px">
+<center>
+<input name="sell_reg" width="400px"type="image" src="img/icons/click-here-to-continue.png" border="0" alt="Submit" />
 </center>
-		      
-				
-	</form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			  
-
-		
-
+		      				
+</form>
+</div>
 </div>
 
-<br><br><br><br><br><br
+<br><br>
 <?php include ("includes/footer.php") ?>
 </body>
 

@@ -126,6 +126,16 @@ font-size: 25px;
 .zero-left{
 margin-left:0px !important;
 }
+.side-panel-home{
+	
+}
+.product-name{
+	font-size: 2.5em;
+    font-family: -webkit-pictograph;
+}
+.button-edge-round{
+	border-radius:5px;
+}
 
 
 
