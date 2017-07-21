@@ -106,7 +106,7 @@ if(isset($_POST['buyer_reg'])){
  <img src="img/icons/register.png" width="100px">
   <h3>Buyer Registration</h3><hr>
 
- <form   method="get" onSubmit="return check();" name="buyer_reg" action="index.php">
+ <form   method="POST" onSubmit="return check();"  action="index.php">
   <div class="form-group">
   <label>USERNAME</label>
   <input class="form-control" type="text" placeholder="Choose Your Username" name="user_name"  required = "true" pattern="^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$" >
@@ -135,7 +135,7 @@ if(isset($_POST['buyer_reg'])){
   </span>
   
  <div class="form-group">
-<input type="submit" value="Register Now"class="btn btn-primary">
+<input type="submit" value="Register Now" name="buyer_reg" class="btn btn-primary">
 </div>
   </form>
  <strong> OR</strong><br>
