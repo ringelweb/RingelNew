@@ -45,7 +45,7 @@ $sellerid=$row['id'];
  $_SESSION['sellerid']=$sellerid;   
     
  move_uploaded_file($_FILES['image']['tmp_name'], $target);
-echo "<script> location.href='home1.php'; </script>";
+echo "<script> location.href='home1.php?msg=Hurray!!! You Posted '; </script>";
         exit;
     
     
