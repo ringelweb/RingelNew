@@ -1,5 +1,6 @@
 <?php
 
+//echo "<script type='text/javascript'>alert('1');</script>";
 $sell_name = "";
 $store_name = "";
 $gen = "";
@@ -15,9 +16,9 @@ $website = "";
 $descrip = "";
 $cover_img = "";
 $error_array = array();
-
+//echo "<script type='text/javascript'>alert('2');</script>";
 if(isset($_POST['sell_reg'])){
-
+//echo "<script type='text/javascript'>alert('3');</script>";
 	$sell_name = strip_tags($_POST['owner_name']); 
  	$_SESSION['owner_name'] = $sell_name; 
 
