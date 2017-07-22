@@ -135,7 +135,7 @@ if(isset($_POST['buyer_reg'])){
   </span>
   
  <div class="form-group">
-<input type="submit" value="Register Now" name="buyer_reg" class="btn btn-primary">
+<input type="submit" value="Join Ringel" name="buyer_reg" class="btn btn-primary">
 </div>
   </form>
  <strong> OR</strong><br>

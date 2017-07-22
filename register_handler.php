@@ -1,6 +1,6 @@
 <?php
 
-//echo "<script type='text/javascript'>alert('1');</script>";
+echo "<script type='text/javascript'>alert('1');</script>";
 $sell_name = "";
 $store_name = "";
 $gen = "";
@@ -16,9 +16,9 @@ $website = "";
 $descrip = "";
 $cover_img = "";
 $error_array = array();
-//echo "<script type='text/javascript'>alert('2');</script>";
+echo "<script type='text/javascript'>alert('2');</script>";
 if(isset($_POST['sell_reg'])){
-//echo "<script type='text/javascript'>alert('3');</script>";
+echo "<script type='text/javascript'>alert('3');</script>";
 	$sell_name = strip_tags($_POST['owner_name']); 
  	$_SESSION['owner_name'] = $sell_name; 
 
@@ -34,6 +34,7 @@ if(isset($_POST['sell_reg'])){
  	$sell_email = strip_tags($_POST['owner_email']); 
 	
  	$_SESSION['owner_email'] = $sell_email;
+echo "<script type='text/javascript'>alert('$sell_email');</script>";
 
  	$gen = $_POST['gender'];
  	$_SESSION['gender'] = $gen;
@@ -86,11 +87,12 @@ if(isset($_POST['sell_reg'])){
  				array_push($error_array, "This Email already in use<br>");
  			}
  		}
- 		else
- 		{
+ 	/*	else
+ 		{ echo "<script type='text/javascript'>alert('4');</script>";
+
  			array_push($error_array, "INAVLID FORMAT!<br>");
  		}
-
+*/
  		if(filter_var($sell_email,FILTER_VALIDATE_EMAIL)) {
 
  			$sell_email = filter_var($sell_email,FILTER_VALIDATE_EMAIL);

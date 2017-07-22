@@ -66,7 +66,7 @@ require 'register_handler.php';
 	     <label class="control-label ">Contact:</label>
 		  </div>
 		   <div class=" col-sm-8  ">
-			<input name="contact" placeholder="Enter 10 digits" class="form-control zero-left" type="text" value="<?php 
+			<input maxlength="10" name="contact" placeholder="Enter 10 digits" class="form-control zero-left" type="text" value="<?php 
 						if(isset($_SESSION['contact'])) {
 							echo $_SESSION['contact'];
 							} 
@@ -216,7 +216,7 @@ require 'register_handler.php';
 	    <label class="control-label">Mobile:</label>
 		  </div>
 		   <div class=" col-sm-8">
-					<input name="mobile" placeholder="Enter 10 digits" class="form-control zero-left" type="text" 
+					<input maxlength="10" name="mobile" placeholder="Enter 10 digits" class="form-control zero-left" type="text" 
 			  	   value="<?php 
 						if(isset($_SESSION['mobile'])) {
 							echo $_SESSION['mobile'];
@@ -236,7 +236,7 @@ require 'register_handler.php';
 		  </div>
 		   <div class=" col-sm-8">
 					
-			  			<input name="owner_email" placeholder="xyz@gmail.com" class="form-control zero-left " type="text"
+			  			<input name="owner_email" placeholder="xyz@gmail.com" class="form-control zero-left " type="email"
 			  			value="<?php 
 						if(isset($_SESSION['owner_email'])) {
 							echo $_SESSION['owner_email'];
@@ -245,8 +245,8 @@ require 'register_handler.php';
 						
 							<span class="error">
 						<?php if(in_array("This Email already in use<br>", $error_array))  echo "This Email already in use<br>";
-						 else if(in_array("INAVLID FORMAT!<br>", $error_array))  echo "invalid email format!<br>";?>
-		 </span>
+						 else if(in_array("INAVLID FORMAT!<br>", $error_array))  echo "INAVLID FORMAT!<br>";?>
+		                    </span>
 		 
 		 
 		 
