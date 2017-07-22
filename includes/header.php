@@ -30,8 +30,9 @@
                        <li><a data-toggle="modal" data-target="#loginModal" href="#"><i class="glyphicon glyphicon-log-in x"> Login</i></a></li>
                 <?php
                        $currentpage = $_SERVER['REQUEST_URI'];
+					   echo "<script>alert($currentpage)</script>";
 					   //$currentpage=="/RingelNew/index.php"    to be change later
-                       if (!($currentpage=="/" || $currentpage=="/RingelNew/index.php" || $currentpage=="" )) {?>
+                       if (!($currentpage=="/RingelNew/" || $currentpage=="/RingelNew/index.php" || $currentpage=="" )) {?>
                       <li><a  href="index.php"><i class="glyphicon glyphicon-user x"> <?php echo "Register" ?></i></a></li>
 					  <?php
                          }

@@ -150,8 +150,28 @@ cursor:pointer;
 row .row-control{
 	margin-top:5px !important;
 }
-
-
+.row-control{
+	margin-top:5px !important;
+}
+.icon-green{
+	font-size:35px;
+	float:right;
+	color:green;
+}
+.icon-red{
+	font-size:35px;
+	float:right;
+	color:#ea0c0c;
+}
+.font-icon{
+	font-size:25px;
+}
+.no-underline{
+	text-decoration:none;
+}
+.margin-bottom{
+	margin-bottom:20px
+}
 
 
 

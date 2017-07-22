@@ -27,7 +27,8 @@ if ($num == 0) {
   $_SESSION['buyer_user_name'] = $row['username'];
   $_SESSION['buyerid'] = $row['buyerid'];
   header('location: home1.php');
-}}
+}
+}
 
 else if($usertype=="seller"){
 
