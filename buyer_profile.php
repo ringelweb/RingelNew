@@ -199,7 +199,31 @@
          </div>
          <br>
 		 <div class="">
-        <div class="col-sm-8">
+		 
+		 
+		 
+		 
+		 <div class="col-md-4">
+			<div class="row">
+              
+                           <a href="#" >
+                        <!--   <img src="<?php //echo "img/buyer_img/".$row['profilepic'].""; ?>" height="100px"> -->
+	<!-- for testing-->				<center>	<img src="img/icons/product.png"></center>
+                           </a>
+             </div>
+			 
+			 <div class="row">
+				
+  	<center>	<button style="width:80%" class="btn btn-danger btn-block">
+			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+								    		Account Setting</button><center>
+  				
+  			
+			</div>
+                     
+            </div>
+			<br>
+        <div class="col-md-8 ">
             <div class="row ">
                <div class="panel panel-info panel_setting" >
                   <div class="panel-body div-hover">
@@ -224,6 +248,7 @@
                </div>
 			   
             </div>
+			<!--
 			 <div class="row">
                <div class="well well-lg" >
 			   
@@ -232,6 +257,7 @@
                   Order a Product</button>
                </div>
               </div>
+			  -->
 			  
            <div class="row">
          <div class="panel panel-danger panel_setting ">
@@ -282,25 +308,7 @@
  </div>
  
  
-     <div class="col-md-4 ">
-			<div class="row">
-              
-                           <a href="#" >
-                        <!--   <img src="<?php //echo "img/buyer_img/".$row['profilepic'].""; ?>" height="100px"> -->
-	<!-- for testing-->				<center>	<img src="img/icons/product.png"></center>
-                           </a>
-             </div>
-			 
-			 <div class="row">
-				
-  	<center>	<button style="width:80%" class="btn btn-danger btn-block">
-			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-								    		Account Setting</button><center>
-  				
-  			
-			</div>
-                     
-            </div>
+     
 		</div>	
 			
 			
@@ -312,8 +320,8 @@
 			</div>
  
    
-         </div>
-      </div>
+      
+	  <br>
       <?php include'includes/footer.php';
          $buyer_user_name=$_SESSION['buyer_user_name'];
          $buyerid=$_SESSION['buyerid'];?>
