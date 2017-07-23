@@ -10,7 +10,7 @@
    $gender = $row['gender'];
    $contact = $row['contact'];
    $address = $row['address'];
-   
+   $msg="";
    $email = $row['email']; 
    $profilepic=$row['profilepic'];
    
@@ -22,7 +22,7 @@
        $buyer_user_name=$_SESSION['buyer_user_name'];
        $buyerid=$_SESSION['buyerid'];
        
-    
+
     
        if(isset($_POST['old_password'])){
           $old_password = strip_tags($_POST['old_password']);
@@ -45,6 +45,7 @@
           $_SESSION['buyer_img']= $buyer_img;
           move_uploaded_file($_FILES['image']['tmp_name'], $target); 
                   $result4= mysqli_query($con,"UPDATE buyer_info SET profilepic='".$buyer_img."' WHERE buyerid='$buyerid'"); 
+				  $msg="Profile Picture Updated";
           }
           
           if(isset($_POST['update'])){
@@ -57,7 +58,7 @@
           $_SESSION['buyer_name']=$buyer_name;
    	
           $gender = strip_tags($_POST['gender']); 
-   	$_SESSION['gender'] = $gender;
+     	$_SESSION['gender'] = $gender;
    
    	$buyer_address = strip_tags($_POST['buy_address']);
    	$_SESSION['buy_address'] = $buyer_address;
@@ -68,10 +69,12 @@
    if((mysqli_num_rows($result)>0)){
           
            $result2=mysqli_query($con,"UPDATE buyer_info SET buyername='".$buyer_name."' , address= '".$buyer_address."' , contact='".$buyer_contact."' , email= '".$buyer_email."' , gender='".$gender."' WHERE buyerid='$buyerid'");
-          }
+          $msg=" profile updated successfully";
+		  }
    if((mysqli_num_rows($result))==0) {
         		$result3 =mysqli_query($con,"INSERT INTO buyer_info VALUES ('".$buyerid."','".$buyer_email."','".$buyer_name."','".$buyer_contact."','".$buyer_address."','".$gender."',' ')");
-   
+     
+	   $msg="Password Changed Successfully";
    }
           $p_check = mysqli_query($con,"SELECT password FROM buyer_users WHERE buyerid='$buyerid' and password='$old_password'");
           
@@ -86,7 +89,8 @@
           else{
               
            $result4 = mysqli_query($con,"UPDATE buyer_users SET password ='$new_password1' WHERE password='$old_password'");
-          }
+ $msg=" profile updated successfully";
+		 }
    	if ($new_password!=$confirm_password) {
    
    		array_push($error_array, "Passwords dont match!!<br>");
@@ -117,12 +121,20 @@
                   </div>
 				  </div>
 				  </div>
-				  </div>
-                  
-				  
-				  
-				  
-         <br>
+	
+			  </div>
+			  <?php if(isset($msg)){
+				     
+			      
+			  ?>
+			  
+			  
+<div class="panel panel-primary" >
+<center style="color:red;font-weight:bold"><?php echo $msg; ?></center>
+</div>				  
+				  <?php } ?>    
+			  <br>
+		  
          <form id = "update" action="buyer_account.php" method="POST" enctype="multipart/form-data">
             <div class="row">
                <div class="col-md-6 ">
@@ -200,7 +212,7 @@
          <div class="form-group">
          <label>Enter Old Password</label>
          <input type="password" class="form-control" name="old_password" placeholder="">
-         <?php if(in_array("Incorrect Password!!<br>", $error_array))  echo "Incorrect Password!!<br>";?>
+         <?php //if(in_array("Incorrect Password!!<br>", $error_array))  echo "Incorrect Password!!<br>";?>
          </div>
          <div class="form-group">
          <label>Enter New Password</label>
@@ -211,7 +223,7 @@
          <input type="password" class="form-control" name="confirm_password" placeholder="">
          <?php if(in_array("Passwords dont match!!<br>", $error_array))  echo "Passwords dont match!!<br>";?>
          </div>
-  <input onclick="confirm('Are you sure?')"  type="submit" class="btn btn-block btn-danger " value="Update Password" name="update" style="margin-top:42px">
+  <input onclick="return confirm('Are you sure?')"  type="submit" class="btn btn-block btn-danger " value="Update Password" name="update" style="margin-top:42px">
          <?php if(in_array("Details have been updated successfully<br>", $display_success_message))  echo "Details have been updated successfully<br>";
             ?>
          </div>

@@ -206,12 +206,12 @@
 		 <div class="col-md-4">
 			<div class="row">
               
-                           <a href="#" >
-                        <!--   <img src="<?php //echo "img/buyer_img/".$row['profilepic'].""; ?>" height="100px"> -->
-	<!-- for testing-->				<center>	<img src="img/icons/product.png"></center>
-                           </a>
+            <center>               <a href="#" >
+                          <img class="img-circle" src="<?php echo "img/buyer_img/".$row['profilepic'].""; ?>" height="200px" width="200px">
+	<!-- for testing			<center>	<img src="img/icons/product.png"></center> -->	
+                           </a></center>
              </div>
-			 
+			 <br>
 			 <div class="row">
 				
   	<center>	<button style="width:80%" class="btn btn-danger btn-block">
