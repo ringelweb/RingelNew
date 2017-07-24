@@ -150,7 +150,7 @@
                                     <h4 class="modal-title">Your Inbox!</h4>
                                  </div>
                                  <div class="modal-body">
-                                    <!--  form starts here-->
+                                    <!--  form starts    here-->
                                     <?php
                                        while($row_messages = mysqli_fetch_array($run_query_notif))
                                        	{
