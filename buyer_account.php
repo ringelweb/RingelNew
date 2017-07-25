@@ -129,16 +129,13 @@
 				  </div>
 	
 			  </div>
-			  <?php if(isset($msg)){
-				     
-			      
-			  ?>
+			  <?php if(isset($msg) && $msg!=""){?>
 			  
  <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
            <center> <strong>Alert: </strong><?php echo $msg; ?></center>
-   </div>			  				  
-				  <?php } ?>    
+ </div>			  				  
+			  <?php } ?>    
 			  <br>
 		  
          <form id = "update" action="buyer_account.php" method="POST" enctype="multipart/form-data">
@@ -167,7 +164,7 @@
                     
                         <div class="form-group">
                            <label>Mobile</label>
-                           <input class="form-control"  name="contact" value="<?php echo $contact; ?>" >
+                           <input maxlength="10" class="form-control"  name="contact" value="<?php echo $contact; ?>" >
                         </div>
                       
                         <div class="form-group">
