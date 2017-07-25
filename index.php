@@ -74,17 +74,24 @@ if(isset($_POST['buyer_reg'])){
 <div class="container margin-container">
 <?php if(isset($_GET['error'])){ 
 ?>
-<div class="row text-center well error">
-<?php echo $_GET['error'] ?>
-</div>
+
+
+  <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     <center>       <strong>Alert: </strong><?php echo $_GET['error'] ?></center>
+   </div>
+
 <?php } ?>
 
 
 <?php if(isset($_GET['msg'])){ 
 ?>
-<div class="row text-center well error">
-<?php echo $_GET['msg'] ?>
-</div>
+
+  <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <center> <strong>Alert: </strong><?php echo $_GET['msg'] ?></center>
+   </div>
+
 <?php } ?>
 
 <div class="row">

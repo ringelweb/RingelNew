@@ -76,7 +76,7 @@
      
 	   $msg="Password Changed Successfully";
    }
-          $p_check = mysqli_query($con,"SELECT password FROM buyer_users WHERE buyerid='$buyerid' and password='$old_password'");
+          $p_check = mysqli_query($con,"SELECT password FROM buyer_users WHERE buyerid='$buyerid'");
           
           $num_rows4 = mysqli_num_rows($p_check); 
           
@@ -88,7 +88,7 @@
    	}
           else{
               
-           $result4 = mysqli_query($con,"UPDATE buyer_users SET password ='$new_password1' WHERE password='$old_password'");
+           $result4 = mysqli_query($con,"UPDATE buyer_users SET password ='$new_password1' WHERE buyerid='$buyerid'");
  $msg=" profile updated successfully";
 		 }
    	if ($new_password!=$confirm_password) {
@@ -102,16 +102,22 @@
           ?>
 <!DOCTYPE html>
 <html>
-   <title>Settings</title>
-   <meta charset="UTF-8">
+      <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link href="css/bootstrap.min.css" rel="stylesheet">
    <link href="css/style.css" rel="stylesheet">
    <script src="js/jquery.js"></script>
    <script src="js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+           <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    
+	<?php include 'includes/header.php'; ?>
    <body class="margin-container" >
+
       <div class="container">
-         <?php include 'includes/header.php'; ?>
+     
         <div class="row">
             <div class="col-md-12 ">
                <div class="panel panel-primary panel_setting" >
@@ -128,10 +134,10 @@
 			      
 			  ?>
 			  
-			  
-<div class="panel panel-primary" >
-<center style="color:red;font-weight:bold"><?php echo $msg; ?></center>
-</div>				  
+ <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <center> <strong>Alert: </strong><?php echo $msg; ?></center>
+   </div>			  				  
 				  <?php } ?>    
 			  <br>
 		  
@@ -234,9 +240,10 @@
       
          </div>
 		 <br>		 <br>
-         <?php include'includes/footer.php';
-            ?>
+         
       </div>
+	  <?php include'includes/footer.php';
+            ?>
    </body>
 </html>
 <?php } ?>

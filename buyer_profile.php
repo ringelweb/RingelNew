@@ -26,6 +26,10 @@
    <link href="css/style.css" rel="stylesheet">
    <script src="js/jquery.js"></script>
    <script src="js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+           <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
    <body >
       <?php
          include 'includes/header.php';
@@ -213,10 +217,11 @@
              </div>
 			 <br>
 			 <div class="row">
+		<center>		 		 <p><i class="fa fa-user w3-margin-right w3-text-theme "></i> <span class="link w3-text-theme"><?php echo  strtoupper($buyer_user_name);?></span></p>
 				
-  	<center>	<button style="width:80%" class="btn btn-danger btn-block">
+  	<button style="width:80%" class="btn btn-danger btn-block">
 			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-								    		Account Setting</button><center>
+								    		Account Setting</button></center>
   				
   			
 			</div>

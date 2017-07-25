@@ -11,7 +11,8 @@ $result5=mysqli_query($con,"SELECT * FROM buyer_info WHERE buyerid='".$buyerid."
 $row2= mysqli_fetch_array($result5);
 
 }
-if(!empty($_GET)){ 
+/*logic for likes*/
+if(!empty($_GET['prodid'])){ 
       $prodid=$_GET['prodid'];
       $seller_result= mysqli_query($con,"SELECT sellerid FROM product_info WHERE productid='".$prodid."'");
       
@@ -21,7 +22,7 @@ if(!empty($_GET)){
       $like_result=mysqli_query($con,$query);
 }
       
-      
+   
       
   
 
@@ -81,12 +82,12 @@ $result= mysqli_query($con, $query);
       <div class="w3-card-2 w3-round w3-white">
         <div class="w3-container">
           
-         <h4 class="w3-center"><?php echo $row['orgname']; ?></h4>
+      <h3 style="font-weight:600;color:green" class="w3-center">Profile</h3>
          <p class="w3-center"> <img src="<?php echo "img/org_coverimg/".$row['coverimage'].""; ?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-		 
-        <p><i class="fa fa-link fa-fw w3-margin-right w3-text-theme link"> <?php echo $row['siteurl']; ?></i></p>
-         <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i> <?php echo $row['address']; ?></p>
+		 <p><i class="fa fa-user w3-margin-right w3-text-theme "></i> <span class="link w3-text-theme"><?php echo  strtoupper($row['orgname']);?></span></p>
+         <p><i class="fa fa-link w3-margin-right w3-text-theme "></i> <span class="link w3-text-theme"><?php echo $row['siteurl']; ?></span></p>
+         <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i><span class="w3-text-theme"><?php echo $row['address']; ?></span></p>
               
 	   </div>
       </div>
@@ -96,12 +97,13 @@ $result= mysqli_query($con, $query);
       <div class="w3-card-2 w3-round w3-white">
      
         <div class="w3-container">
-         <h4 class="w3-center"><?php echo $buyer_user_name;?></h4>
+           <h3 style="font-weight:600;color:green" class="w3-center">Profile</h3>
          <p class="w3-center"> <img src="<?php echo "img/buyer_img/".$row2['profilepic'].""; ?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-         <p><i class="fa fa-user-circle fa-fw w3-margin-right w3-text-theme"></i> <?php echo $buyer_user_name;?></p>
- <p><i class="fa fa-link fa-fw w3-margin-right w3-text-theme"></i> <?php echo $row['siteurl']; ?></p>
-         <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i> <?php echo $row['address']; ?></p>
+		 
+		 <p><i class="fa fa-user w3-margin-right w3-text-theme "></i> <span class="link w3-text-theme"><?php echo  strtoupper($buyer_user_name);?></span></p>
+         <p><i class="fa fa-envelope w3-margin-right w3-text-theme "></i> <span class="link w3-text-theme"><?php echo $row2['email']; ?></span></p>
+         <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i><span class="w3-text-theme"><?php echo $row2['address']; ?></span></p>
         </div>
       </div>
      <?php }  ?>
@@ -127,12 +129,22 @@ $result= mysqli_query($con, $query);
      <?php } ?>
       
    <?php
-         $user_name=$_SESSION['user_name'];
+   
+   if(isset($_SESSION['user_name'])){
+	   $user_name=$_SESSION['user_name'];
+   }
+   
+         
          $query="SELECT * FROM product_info";
          $result= mysqli_query($con, $query);
          $flag = 0;
          while ($row = mysqli_fetch_array($result)) {
             $sellerinfo=$row['sellerid'];
+			//getting time
+			$timestamp = strtotime($row['time']);
+			$date = date('d-m-Y', $timestamp);
+            $time = date('H:i:s',strtotime($timestamp));
+			
             $productname=$row['productname'];
             
              $result1= mysqli_query($con,"SELECT coverimage,orgname FROM org_info WHERE sellerid='".$sellerinfo."'");
@@ -141,20 +153,30 @@ $result= mysqli_query($con, $query);
              $get_productid_query = mysqli_query($con,"SELECT productid FROM product_info WHERE sellerid = $sellerinfo AND productname = '".$productname."' ");
              $result_productinfo_query = mysqli_fetch_array($get_productid_query);
              $productid = $result_productinfo_query['productid'];
-            // echo $productid;                   
+            // echo $productid;    
+			
     ?>
      
         
 
       <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
-    <a href="seller_profile.php?id=<?php echo $row['sellerid'];?>">    <img src="<?php echo "img/org_coverimg/".$row1['coverimage'].""; ?>" alt="Store Image" class="w3-left w3-margin-right w3-block" style="width:60px">
-        <span class="w3-right w3-opacity"><?php
-
-echo"<i class='glyphicon glyphicon-time'></i> " .date("h:i:sa");
-?></span>
-        
-        <h4><a href="seller_profile.php?id=<?php echo $row['sellerid'];?>"><?php echo"".$row1["orgname"].""?></a></h4>
+       <a href="seller_profile.php?id=<?php echo $row['sellerid'];?>">    <img src="<?php echo "img/org_coverimg/".$row1['coverimage'].""; ?>" alt="Store Image" class="w3-left w3-margin-right w3-block" style="width:60px">
+        </a><span class="w3-right" style="color:#3c763d"><?php echo"<i class='glyphicon glyphicon-time'></i> " .$time."<br>".$date;?></span>
+        <div class="row">
+		<div class="col-sm-1">
+		<a href="seller_profile.php?id=<?php echo $row['sellerid'];?>"><h4 style="font-weight:600;color:green;"><?php echo"".$row1["orgname"].""?></h4></a>
+		</div>
+		
+		</div>
+	
+		
+		
+		
+		
+	<!--	
+        <h4><a href="seller_profile.php?id=<?php// echo $row['sellerid'];?>"></a></h4><h4><?php// echo"".$row1["orgname"].""?></h4>
         <hr class="w3-clear">
+		-->
         <img src="<?php echo "img/product_img/".$row['productimage'].""; ?>" class="w3-margin-bottom img-responsive">
 		<span class="label label-danger "> <?php echo"".$row["category"].""?></span> 
 <br>
@@ -192,14 +214,14 @@ echo"<i class='glyphicon glyphicon-time'></i> " .date("h:i:sa");
         <div class="">
           <!--push comments  -->
 		  <?php if(isset($buyerid)){ ?>
-          <button style="margin-bottom:5px" class="btn btn-xs btn-success" data-toggle="collapse" data-target="#push-review">Send Your Review</button>
+          <button style="margin-bottom:5px" class="btn btn-xs btn-success" data-toggle="collapse" data-target="#<?php echo $productid."send"?>">Send Your Review</button>
           <?php } ?>             
-			 <div id="push-review" class="collapse">
+			 <div id="<?php echo $productid."send"?>" class="collapse">
                <form id = "comment_form" action="home1.php" method="POST" enctype="multipart/form-data">
                   <div style="margin-bottom:5px">
                     <textarea class="form-control" name="comment_body" placeholder="your comment goes here..."></textarea>
                   </div>
-                  <input  style="float:right;margin-bottom:5px !important;" type="submit" class="btn btn-primary btn-sm " value="submit" name="comment_submit">
+                  <input  style="float:right;margin-bottom:5px !important;" type="submit" class="btn btn-primary btn-sm " value="Send" name="comment_submit">
                   <!--  form ends here-->
                 </form>
              </div> 

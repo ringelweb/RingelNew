@@ -35,7 +35,8 @@ $sellerid=$row['id'];
   $image= $_FILES['image']['name'];
   
   
-  $query = "INSERT INTO product_info(sellerid, productname, productimage, category, quantity, description)VALUES('".$sellerid."','". $product_name . "','" . $image . "','" . $category . "','" . $quantity . "','" . $description. "')";
+  $query = "INSERT INTO product_info(sellerid, productname, productimage, category, quantity, description)VALUES('$sellerid','$product_name','$image','$category','$quantity','$description')";
+echo "<script> alert('hiii'+$query) </script>";
   mysqli_query($con, $query); 
   
   
