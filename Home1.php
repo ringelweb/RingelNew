@@ -59,7 +59,7 @@ $sellerid=$row['id'];}
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="css/modal.css" rel="stylesheet" type="text/css"  media="all" />
+<link href="css/modal.css" rel="stylesheet" type="text/css"  media="all" />
 <body class="w3-theme-l5">
     <?php include 'includes/header.php'; ?>
     
@@ -177,7 +177,7 @@ echo"<i class='glyphicon glyphicon-time'></i> " .date("h:i:sa");
 			name="like"><i class="fa fa-heart"></i>  Like</button></a>
 		  <?php }?>
         <!--logic for review starts here  -->
-        <button type="button"  class="w3-button w3-theme-d2 w3-margin-bottom button-edge-round" data-toggle="collapse" data-target="#review" ><i class="fa fa-comment"></i>  Reviews</button> 
+        <button  type="button"  class="w3-button w3-theme-d2 w3-margin-bottom button-edge-round" data-toggle="collapse" data-target="#<?php echo $productid?>"><i class="fa fa-comment"></i>  Reviews</button> 
 
         <!--End of comment modal -->
 		 <?php if(isset($buyerid)){ ?>
@@ -185,7 +185,7 @@ echo"<i class='glyphicon glyphicon-time'></i> " .date("h:i:sa");
 		 <?php }?>       
 	   <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom button-edge-round"><i class="fa fa-share"></i>  Share</button> 
         
-		<div id="review" class="collapse">
+		<div id="<?php echo $productid?>" class="collapse">
          HERE 3 latest reviews with user name should display
         </div>
           
