@@ -219,9 +219,9 @@
 			 <div class="row">
 		<center>		 		 <p><i class="fa fa-user w3-margin-right w3-text-theme "></i> <span class="link w3-text-theme"><?php echo  strtoupper($buyer_user_name);?></span></p>
 				
-  	<button style="width:80%" class="btn btn-danger btn-block">
+ <a style="text-decoration:none" href="buyer_account.php"> 	<button style="width:80%" class="btn btn-danger btn-block">
 			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-								    		Account Setting</button></center>
+Account Setting</button></a></center>
   				
   			
 			</div>
