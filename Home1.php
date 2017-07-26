@@ -1,8 +1,8 @@
 <?php 
    require 'includes/connect.php';
-
    
- /*
+   
+   /*
    if (isset($_SESSION['buyer_user_name'])||isset($_SESSION['user_name'])){
    if (isset($_SESSION['buyer_user_name'])) {
         $buyer_user_name=$_SESSION['buyer_user_name'];
@@ -14,68 +14,44 @@
    
    }
     */
- 
+   
         
-?>
-
-
-
-
-				     <!-- Logic Script for Likes -->		
-	
- <?php
-
-   if(isset($_POST['like_submit']) && isset($_SESSION['buyer_user_name']) ){
-	   echo"<script>
-	   var ele=document.getElementById('liked').value;
-	   alert(ele);
-	   </script>";
-	                      
-	                           $buyerId = $_POST['buyer_id']; 
-							  $sellerId = $_POST['seller_id']; 
-							   $ProductId = $_POST['product_id'];
-							 $like_result =mysqli_query($con,"INSERT INTO product_likes(product_id,seller_id, buyer_id) VALUES ('".$ProductId."','".$buyerId."','".$sellerId."')");
-		 if($like_result>0){
-			 $msg="you Liked";
-		 
-		 }else{
-			 $msg="You have already Liked this product";
-		 }
+   ?>
+<!-- Logic Script for Likes -->		
+<?php
+   if(isset($_POST['like_submit']) && isset($_SESSION['buyer_user_name']) ){      
+                  $buyer= $_POST['buyer_id']; 
+   				  $seller = $_POST['seller_id']; 
+   				   $Product= $_POST['product_id'];
+   				 $like_result =mysqli_query($con,"INSERT INTO product_likes(product_id, buyer_id,seller_id) VALUES ('".$Product."','".$buyer."','".$seller."')");
+   if($like_result>0){
+    $msg="you Liked";
+   
+   }else{
+    $msg="You have already Liked this product";
+   }
    }
    
    ?>
-
-    <?php
-                        //logic to insert comments into database using comment modal
-                         if(isset($_POST['comment_submit']) && isset($_SESSION['buyer_user_name']) )
-                         { 
-                               $review_body = $_POST['review_body']; 
-							   $reviewBy = $_POST['buyer_id']; 
-							   $reviewPostBy = $_POST['seller_id']; 
-							   $reviewOn = $_POST['product_id']; 
-                               $insert_comment =mysqli_query($con,"INSERT INTO productreview(productid, sellerid, buyerid, review) VALUES ('".$reviewOn."','".$reviewPostBy."','".$reviewBy."','".$review_body."')");
-                             if ( $insert_comment>0){ 
-							$msg="Thanks to give Review on our product!!";//set flag so that comment is not inserted multiple times   
-                                    
-									  } 
-									   else{
-										   $msg="Error description: " . mysqli_error($con);
-									   }
-						 }
-                         //end of logic to insert comment 
-                        ?>			 
-                   
-
-
-
-
-
-   
-   
-   
-   
-   
-   
+<?php
+   //logic to insert comments into database using comment modal
+    if(isset($_POST['comment_submit']) && isset($_SESSION['buyer_user_name']) )
+    { 
+          $review_body = $_POST['review_body']; 
+   $reviewBy = $_POST['buyer_id']; 
+   $reviewPostBy = $_POST['seller_id']; 
+   $reviewOn = $_POST['product_id']; 
+          $insert_comment =mysqli_query($con,"INSERT INTO productreview(productid, sellerid, buyerid, review) VALUES ('".$reviewOn."','".$reviewPostBy."','".$reviewBy."','".$review_body."')");
+        if ( $insert_comment>0){ 
+   $msg="Thanks to give Review on our product!!";//set flag so that comment is not inserted multiple times   
+               
+   } 
+   else{
+   $msg="Error description: " . mysqli_error($con);
+   }
+   }
+    //end of logic to insert comment 
+   ?>			 
 <!--Message Script starts -->
 <?php 
    if(isset($_POST['message_submit']))
@@ -84,7 +60,7 @@
    			        		$message_body = $_POST['comment_body'];
                           if (isset($_SESSION['buyer_user_name'])) {
                             $buyer_user_name=$_SESSION['buyer_user_name'];
-						  }
+   			  }
    			        		$query = "SELECT * from users WHERE id = '".$message_to."' ";
    			        		$run_query = mysqli_query($con,$query);
    
@@ -97,13 +73,12 @@
    
    $query = "INSERT INTO pvt_msgs(_to, _from, message, _read) VALUES ('".$message_to."','".$buyer_user_name."','".$message_body."', 'no')";
    $insert_message = mysqli_query($con,$query);
-  $msg="Message Sent SucccessFully";
+   $msg="Message Sent SucccessFully";
    }
    }
    
    ?>
-   <!-- Message System ends -->
-  
+<!-- Message System ends -->
 <!DOCTYPE html>
 <html>
    <title>Welcome to Home Feed</title>
@@ -121,8 +96,7 @@
    <body class="w3-theme-l5">
       <?php include 'includes/header.php'; ?>
       <div class="w3-container w3-content container" style="max-width:1400px;margin-top:70px">
-	  
-	 <!-- Alert Panel-->
+         <!-- Alert Panel-->
          <?php if(isset($msg) && $msg!=""){ 
             ?>
          <div class="alert alert-danger alert-dismissible" role="alert">
@@ -130,30 +104,20 @@
             <center> <strong>Alert: </strong><?php echo $msg?></center>
          </div>
          <?php }?>
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
          <!-- The Grid -->
          <div class="w3-row">
             <!-- Left Column for seller STARTS -->
             <div class="w3-col m3 ">
                <?php if(isset($_SESSION['user_name'])) { 
-                $user_name=$_SESSION['user_name'];
-                $idresult=mysqli_query($con,"SELECT id FROM users WHERE username='".$user_name."'"); 
-                $idrow=mysqli_fetch_array($idresult);
-                 $sellerid=$idrow['id'];
-                  $query="SELECT orgname,address,coverimage,siteurl,contact,email FROM org_info WHERE sellerid='".$sellerid."'";
-                  $org_info_result= mysqli_query($con, $query);
-                   $org_info_row= mysqli_fetch_array( $org_info_result);       
-                          
-                          ?>
-              
+                  $user_name=$_SESSION['user_name'];
+                  $idresult=mysqli_query($con,"SELECT id FROM users WHERE username='".$user_name."'"); 
+                  $idrow=mysqli_fetch_array($idresult);
+                   $sellerid=$idrow['id'];
+                    $query="SELECT orgname,address,coverimage,siteurl,contact,email FROM org_info WHERE sellerid='".$sellerid."'";
+                    $org_info_result= mysqli_query($con, $query);
+                     $org_info_row= mysqli_fetch_array( $org_info_result);       
+                            
+                            ?>
                <div class="w3-card-2 w3-round w3-white">
                   <div class="w3-container">
                      <h3 style="font-weight:600;color:green" class="w3-center">Profile</h3>
@@ -165,19 +129,19 @@
                   </div>
                </div>
                <?php } ?>
-			   <!-- Left Column for seller ENDS -->
+               <!-- Left Column for seller ENDS -->
                <br>
-			   <!-- Left Column for BUYER STARTS -->
+               <!-- Left Column for BUYER STARTS -->
                <?php if(isset($_SESSION['buyer_user_name'])) {
-   $buyer_user_name=$_SESSION['buyer_user_name'];
-   $result=mysqli_query($con,"SELECT buyerid FROM buyer_users WHERE username='".$buyer_user_name."'"); 
-   $row=mysqli_fetch_array($result);
-   $buyerid=$row['buyerid'];
-   
-   $buyer_result=mysqli_query($con,"SELECT * FROM buyer_info WHERE buyerid='".$buyerid."'");
-   $buyer_row= mysqli_fetch_array($buyer_result);
-
-			   ?>
+                  $buyer_user_name=$_SESSION['buyer_user_name'];
+                  $result=mysqli_query($con,"SELECT buyerid FROM buyer_users WHERE username='".$buyer_user_name."'"); 
+                  $row=mysqli_fetch_array($result);
+                  $buyerid=$row['buyerid'];
+                  
+                  $buyer_result=mysqli_query($con,"SELECT * FROM buyer_info WHERE buyerid='".$buyerid."'");
+                  $buyer_row= mysqli_fetch_array($buyer_result);
+                  
+                     ?>
                <div class="w3-card-2 w3-round w3-white">
                   <div class="w3-container">
                      <h3 style="font-weight:600;color:green" class="w3-center">Profile</h3>
@@ -191,15 +155,7 @@
                <?php }  ?>
                <!-- End Left Column for buyer -->
             </div>
-			
-			
-			
-		<!-- .................................................................................................................................-->	
-			
-			
-			
-			
-			
+            <!-- .................................................................................................................................-->	
             <!-- TOP SHOW IF SELLER -->
             <div class="w3-col m7">
                <?php if(isset($_SESSION['user_name'])) { ?>
@@ -215,48 +171,42 @@
                   </div>
                </div>
                <?php } ?>
-            <!-- END TOP SHOW IF SELLER -->
-			
-			
-			
-			
-			
-			
-			<?php
-			/*
-                  if(isset($_SESSION['user_name'])){
-                   $user_name=$_SESSION['user_name'];
-                  }     
-                */  
-                        $query="SELECT * FROM product_info";
-                        $result= mysqli_query($con, $query);
-						$i= mysqli_num_rows($result);
-					//	echo "<script>alert('hello'.'mysqli_num_rows($result)')</script>";
-					   $flag = 0;
-					  while ($i>0) {
-						  
-						 $row=mysqli_fetch_array($result);
-                         $sellerId=$row['sellerid'];
-						 $productid=$row['productid'];
-						  
-						 $result_org= mysqli_query($con,"SELECT coverimage,orgname FROM org_info WHERE sellerid='".$sellerId."'");
-                         $row_org= mysqli_fetch_array($result_org);
-						 
-						 $coverimage= $row_org['coverimage'];
-						 $orgname= $row_org['orgname'];
-						 //getting time start
-                         $timestamp = strtotime($row['time']);
-                         $date = date('d-m-Y', $timestamp);
-                         $time = date('H:i:s',strtotime($timestamp));
-						 //getting time end
-                         $productname=$row['productname'];
-						 $productimage=$row['productimage'];
-						 $category=$row['category'];
-						 $quantity=$row['quantity'];
-						 $description=$row['description'];
-				         $likeFlag="flag".$productid;
-						 $likeFlag=0;
-                   ?>
+               <!-- END TOP SHOW IF SELLER -->
+               <?php
+                  /*
+                                 if(isset($_SESSION['user_name'])){
+                                  $user_name=$_SESSION['user_name'];
+                                 }     
+                               */  
+                                       $query="SELECT * FROM product_info";
+                                       $result= mysqli_query($con, $query);
+                  			$i= mysqli_num_rows($result);
+                  		//	echo "<script>alert('hello'.'mysqli_num_rows($result)')</script>";
+                  		   $flag = 0;
+                  		  while ($i>0) {
+                  			  
+                  			 $row=mysqli_fetch_array($result);
+                                        $sellerId=$row['sellerid'];
+                  			 $productid=$row['productid'];
+                  			  
+                  			 $result_org= mysqli_query($con,"SELECT coverimage,orgname FROM org_info WHERE sellerid='".$sellerId."'");
+                                        $row_org= mysqli_fetch_array($result_org);
+                  			 
+                  			 $coverimage= $row_org['coverimage'];
+                  			 $orgname= $row_org['orgname'];
+                  			 //getting time start
+                                        $timestamp = strtotime($row['time']);
+                                        $date = date('d-m-Y', $timestamp);
+                                        $time = date('H:i:s',strtotime($timestamp));
+                  			 //getting time end
+                                        $productname=$row['productname'];
+                  			 $productimage=$row['productimage'];
+                  			 $category=$row['category'];
+                  			 $quantity=$row['quantity'];
+                  			 $description=$row['description'];
+                  	         $likeFlag="flag".$productid;
+                  			 $likeFlag=0;
+                                  ?>
                <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
                   <br>
                   <a href="seller_profile.php?id=<?php echo $sellerId;?>"><img src="<?php echo "img/org_coverimg/".$coverimage.""; ?>" alt="Store Image" class="w3-left w3-margin-right w3-block" style="width:60px">
@@ -268,149 +218,122 @@
                         </a>
                      </div>
                   </div>
-				  <hr>
-    <!-- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""-->
+                  <hr>
+                  <!-- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""-->
                   <img src="<?php echo "img/product_img/".$productimage.""; ?>" class="w3-margin-bottom img-responsive">
                   <span class="label label-danger "> <?php echo"".$category.""?></span> 
                   <br>
-			
                   <label for="category" class="badge-warning"></label>
                   <label for="name" class="product-name"><?php echo"".$productname.""?></label><br>
                   <div class="row" style="padding-bottom:10px">
-				    
                      <div class="col-sm-3" ><label for="description" class="badge product-description">Description:  </label></div>
                      <div class="col-sm-9"><?php echo"".$description.""?></div>
                   </div>
-                   <!--LIKE BUTTON FOR BUYER -->
-				   <div class="row">
-                  <?php if(isset($_SESSION['buyer_user_name'])){
-					 
-				  ?>
-				  <div class="col-sm-2">
-				  <form action="home1.php" method="POST">
-				   <input type="hidden" name="product_id" value="<?php echo $productid;?>">
-				   <input type="hidden" name="buyer_id" value="<?php echo $buyerid;?>">
-				   <input type="hidden" name="seller_id" value="<?php echo $sellerId;?>">
-				   <button type="submit" class="w3-button w3-theme-d1 w3-margin-bottom " value="submit" name="like_submit" ><i>9</i> Likes</button>
-				  </form>
-</div>
-                 
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  <!--LIKE BUTTON FOR SELLER -->
-                  <?php }else{?>
-                  <a onclick="alert('Sorry You Can not Like')">
-                  <button class="w3-button w3-theme-d1 w3-margin-bottom " name="like">8</i>  Likes</button>
-				  </a>
-                  <?php }?>
-				  <div class="col-sm-2">
-                  <!--SHOW REVIEW BUTTON -->
-                  <button class="w3-button w3-theme-d2 w3-margin-bottom button-edge-round" data-toggle="modal" data-target="#<?php echo $productid?>"><i>8</i> Reviews</button> 
-                 </div>
-				  <div class="col-sm-2 " style="margin-left:30px">
-                  <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom button-edge-round">Share</button> 
-				  </div>
-                   <?php if(isset($_SESSION['buyer_user_name'])){ ?>
-				    <div class="col-sm-2" style="padding-left:0">
-				 <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom button-edge-round">Buy (<?php echo"".$quantity.""?>)left!</button> 
-				 </div>
-				  <div class="col-sm-2"style="margin-left:30px">
-                  <button data-toggle="modal" data-target="#send_message<?php echo $sellerId?>" type="button" class="w3-button w3-theme-d1 w3-margin-bottom button-edge-round">Message</button> 
-				  </div>
-				  <?php } ?>
-				  </div>
-				  	<!--MESSAGE MODAL -->
-   <div id="send_message<?php echo $sellerId ;?>" class="modal fade" role="dialog">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Send Message To:<span style="color:green"><?php echo $orgname;?></span></h4>
-               </div>
-               <div class="modal-body">
-                  <!--  form starts here-->
-                  <form id = "message_form" action="" method="POST" enctype="multipart/form-data">
-                     <div class="form-group">
-                        <input value="<?php echo $sellerId;?>" type="hidden" name="seller_id">
-                     </div>
-                     <div class="form-group">
-                        <textarea class="form-control" name="comment_body" placeholder="Type your message here"></textarea>
-                     </div>
-                     <input type="submit" class="btn btn-block btn-success" value="submit" name="message_submit" >
-                     <!--  form ends here-->
-                  </form>
-                  <!-- logic to insert comment-->
-               </div>
-            </div>
-         </div>
-      </div> 
-  	 
-	 
-	 
-	 <!--Comment view modal -->
-	  <div id="<?php echo $productid;?>" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Reviews For: <span style="color:red"><?php echo $productname;?></span></h4>
-      </div>
-      <div class="modal-body">
-	                  
-	<?php 
-	$res=mysqli_query($con,"SELECT *FROM productreview where productid=$productid"); 
-    if(mysqli_num_rows($res)==0) echo "Sorry!! No Reviews Yet";
-	$k=mysqli_num_rows($res);
-	while($k>0)
-	{	
-   $r=mysqli_fetch_array($res);
-	$b=$r['buyerid'];
-	$name=mysqli_query($con,"SELECT * from buyer_info where buyerid=$b"); 
-	$x=mysqli_fetch_array($name);
-	echo"<li>".$r['review']."<a href='buyer_profile.php?id=$b'>"."<span style='float:right;color:green'>"."By:".$x['buyername']."</a>"."</span>"."</li>";
-	$k--;} ?>
-	  
-	  
-    
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-	  
-				  
-                     <!-- comments BUTTON  -->
-                  <?php if(isset($_SESSION['buyer_user_name'])){
-                
-				?><br>
-                     <button style="margin-bottom:5px" class="btn btn-xs btn-success" data-toggle="collapse" data-target="#<?php echo $productid."send"?>">Send Your Review</button>
-                      
-					         
-                     <div id="<?php echo $productid."send"?>" class="collapse">
-                        <form id = "comment_form" action="home1.php" method="POST" enctype="multipart/form-data">
-                           <div style="margin-bottom:5px">
-                              <textarea class="form-control" name="review_body" placeholder="your comment goes here..."></textarea>
-                           </div>
-						   <input type="hidden" value="<?php echo $productid;?>" name="product_id">
-						      <input type="hidden" value="<?php echo $buyerid;?>" name="buyer_id">
-							     <input type="hidden" value="<?php echo $sellerId;?>" name="seller_id">
-                                     <input  style="float:right;margin-bottom:5px !important;" type="submit" class="btn btn-primary btn-sm " value="Send" name="comment_submit">
-                           <!--  form ends here-->
+                  <!--LIKE BUTTON FOR BUYER -->
+                  <div class="row">
+                     <?php if(isset($_SESSION['buyer_user_name'])){
+                        ?>
+                     <div class="col-sm-2">
+                        <form action="home1.php" method="POST">
+                           <input type="hidden" name="product_id" value="<?php echo $productid;?>">
+                           <input type="hidden" name="buyer_id" value="<?php echo $buyerid;?>">
+                           <input type="hidden" name="seller_id" value="<?php echo $sellerId;?>">
+                           <button type="submit" class="w3-button w3-theme-d1 w3-margin-bottom " value="submit" name="like_submit" ><i>9</i> Likes</button>
                         </form>
                      </div>
-					 <?php } ?>     
-
+                     <!--LIKE BUTTON FOR SELLER -->
+                     <?php }else{?>
+                     <a onclick="alert('Sorry You Can not Like')">
+                     <button class="w3-button w3-theme-d1 w3-margin-bottom " name="like">8</i>  Likes</button>
+                     </a>
+                     <?php }?>
+                     <div class="col-sm-2">
+                        <!--SHOW REVIEW BUTTON -->
+                        <button class="w3-button w3-theme-d2 w3-margin-bottom button-edge-round" data-toggle="modal" data-target="#<?php echo $productid?>"><i>8</i> Reviews</button> 
+                     </div>
+                     <div class="col-sm-2 " style="margin-left:30px">
+                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom button-edge-round">Share</button> 
+                     </div>
+                     <?php if(isset($_SESSION['buyer_user_name'])){ ?>
+                     <div class="col-sm-2" style="padding-left:0">
+                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom button-edge-round">Buy (<?php echo"".$quantity.""?>)left!</button> 
+                     </div>
+                     <div class="col-sm-2"style="margin-left:30px">
+                        <button data-toggle="modal" data-target="#send_message<?php echo $sellerId?>" type="button" class="w3-button w3-theme-d1 w3-margin-bottom button-edge-round">Message</button> 
+                     </div>
+                     <?php } ?>
+                  </div>
+                  <!--MESSAGE MODAL -->
+                  <div id="send_message<?php echo $sellerId ;?>" class="modal fade" role="dialog">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Send Message To:<span style="color:green"><?php echo $orgname;?></span></h4>
+                           </div>
+                           <div class="modal-body">
+                              <!--  form starts here-->
+                              <form id = "message_form" action="" method="POST" enctype="multipart/form-data">
+                                 <div class="form-group">
+                                    <input value="<?php echo $sellerId;?>" type="hidden" name="seller_id">
+                                 </div>
+                                 <div class="form-group">
+                                    <textarea class="form-control" name="comment_body" placeholder="Type your message here"></textarea>
+                                 </div>
+                                 <input type="submit" class="btn btn-block btn-success" value="submit" name="message_submit" >
+                                 <!--  form ends here-->
+                              </form>
+                              <!-- logic to insert comment-->
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!--Comment view modal -->
+                  <div id="<?php echo $productid;?>" class="modal fade" role="dialog">
+                     <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Reviews For: <span style="color:red"><?php echo $productname;?></span></h4>
+                           </div>
+                           <div class="modal-body">
+                              <?php 
+                                 $res=mysqli_query($con,"SELECT *FROM productreview where productid=$productid"); 
+                                    if(mysqli_num_rows($res)==0) echo "Sorry!! No Reviews Yet";
+                                 $k=mysqli_num_rows($res);
+                                 while($k>0)
+                                 {	
+                                   $r=mysqli_fetch_array($res);
+                                 $b=$r['buyerid'];
+                                 $name=mysqli_query($con,"SELECT * from buyer_info where buyerid=$b"); 
+                                 $x=mysqli_fetch_array($name);
+                                 echo"<li>".$r['review']."<a href='buyer_profile.php?id=$b'>"."<span style='float:right;color:green'>"."By:".$x['buyername']."</a>"."</span>"."</li>";
+                                 $k--;} ?>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- comments BUTTON  -->
+                  <?php if(isset($_SESSION['buyer_user_name'])){
+                     ?><br>
+                  <button style="margin-bottom:5px" class="btn btn-xs btn-success" data-toggle="collapse" data-target="#<?php echo $productid."send"?>">Send Your Review</button>
+                  <div id="<?php echo $productid."send"?>" class="collapse">
+                     <form id = "comment_form" action="home1.php" method="POST" enctype="multipart/form-data">
+                        <div style="margin-bottom:5px">
+                           <textarea class="form-control" name="review_body" placeholder="your comment goes here..."></textarea>
+                        </div>
+                        <input type="hidden" value="<?php echo $productid;?>" name="product_id">
+                        <input type="hidden" value="<?php echo $buyerid;?>" name="buyer_id">
+                        <input type="hidden" value="<?php echo $sellerId;?>" name="seller_id">
+                        <input  style="float:right;margin-bottom:5px !important;" type="submit" class="btn btn-primary btn-sm " value="Send" name="comment_submit">
+                        <!--  form ends here-->
+                     </form>
+                  </div>
+                  <?php } ?>     
                   <br>
                </div>
                <?php $i--; } ?>
@@ -421,15 +344,6 @@
          <!-- End Page Container -->
       </div>
       <br>
-    	
-				  
-
-		
-		
-		
-		
-
-   
       <?php include("includes/footer.php"); ?>
    </body>
 </html>
