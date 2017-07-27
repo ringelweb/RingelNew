@@ -83,11 +83,24 @@
     
                   </div>
                   <div class="panel-body">
-                     <div class="col-sm-offset-6 col-md-2 row-control">
+                   
+					  <div class=" col-md-2 row-control">
+                        <button class="btn btn-success btn-block">
+                        <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+                        Following</button>
+                     </div>
+                     <div class="  col-md-2 row-control">
+                        <button class="btn btn-success btn-block">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                        Followers</button>
+                     </div>
+					   <div class=" col-md-2 row-control">
                         <button class="btn btn-success btn-block">
                         <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
-                        Order Status</button>
-                     </div>
+                        Orders</button>
+                       </div>
+					 
+					 <!--
                      <div class="col-md-2 row-control">
                         <button class="btn btn-success btn-block" data-toggle="modal" data-target="#send_message">
                         <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -100,7 +113,7 @@
                                     <h4 class="modal-title">Add your Message here!!</h4>
                                  </div>
                                  <div class="modal-body">
-                                    <!--  form starts here-->
+                                   
                                     <form id = "message_form" action="" method="POST" enctype="multipart/form-data">
                                        <div class="form-group">
                                           <input style="width:300px" class="form-control" type="text" name="seller_name" placeholder="Enter Seller name to send Message to..." required >
@@ -109,14 +122,15 @@
                                           <textarea class="form-control" name="comment_body" placeholder="your message goes here..." required></textarea>
                                        </div>
                                        <input type="submit" class="btn btn-block btn-success" value="submit" name="message_submit" >
-                                       <!--  form ends here-->
+                                   
                                     </form>
-                                    <!-- logic to insert comment-->
+                                   
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
+					 -->
                      <!--inbox for buyer goes here-->
                      <div class="col-md-2 row-control">
                         <button class="btn btn-success btn-block" data-toggle="modal" data-target="#check_inbox" >
@@ -229,30 +243,7 @@ Account Setting</button></a></center>
             </div>
 			<br>
         <div class="col-md-8 ">
-            <div class="row ">
-               <div class="panel panel-info panel_setting" >
-                  <div class="panel-body div-hover">
-                     <div class="col-md-3 row-control">
-                        <button class="btn btn-primary btn-block">
-                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                        Likes
-                        </button>
-                     </div>
-                     <div class=" col-md-offset-1 col-md-3 row-control">
-                        <button class="btn btn-primary btn-block">
-                        <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
-                        Following</button>
-                     </div>
-                     <div class=" col-md-offset-1 col-md-3 row-control">
-                        <button class="btn btn-primary btn-block">
-                        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-                        Followers</button>
-                     </div>
-                  </div>
-				   
-               </div>
-			   
-            </div>
+          
 			<!--
 			 <div class="row">
                <div class="well well-lg" >

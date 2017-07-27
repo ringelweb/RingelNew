@@ -1,6 +1,7 @@
 <?php 
    require 'includes/connect.php';
-   
+   $currentpage = $_SERVER['REQUEST_URI'];
+					   echo "<script>alert($currentpage)</script>";
    
    /*
    if (isset($_SESSION['buyer_user_name'])||isset($_SESSION['user_name'])){
@@ -120,12 +121,12 @@
                             ?>
                <div class="w3-card-2 w3-round w3-white">
                   <div class="w3-container">
-                     <h3 style="font-weight:600;color:green" class="w3-center">Profile</h3>
+                     <h3 style="font-weight:600;color:green" class="w3-center">Seller's Profile</h3>
                      <p class="w3-center"> <img src="<?php echo "img/org_coverimg/".$org_info_row['coverimage'].""; ?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                      <hr>
                      <p><i class="fa fa-user w3-margin-right w3-text-theme "></i> <span class="link w3-text-theme"><?php echo  strtoupper($org_info_row['orgname']);?></span></p>
-                     <p><i class="fa fa-link w3-margin-right w3-text-theme "></i> <span class="link w3-text-theme"><?php echo $org_info_row['siteurl']; ?></span></p>
-                     <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i><span class="w3-text-theme"><?php echo $org_info_row['address']; ?></span></p>
+                     <p><i class="fa fa-link w3-margin-right w3-text-theme "> <span class="link w3-text-theme"><?php echo $org_info_row['siteurl']; ?></span></i></p>
+					 <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i><span class="w3-text-theme"><?php echo $org_info_row['address']; ?></span></p>
                   </div>
                </div>
                <?php } ?>
@@ -144,9 +145,10 @@
                      ?>
                <div class="w3-card-2 w3-round w3-white">
                   <div class="w3-container">
-                     <h3 style="font-weight:600;color:green" class="w3-center">Profile</h3>
+                     <h3 style="font-weight:600;color:green" class="w3-center">Buyer's Profile</h3>
                      <p class="w3-center"> <img src="<?php echo "img/buyer_img/".$buyer_row['profilepic'].""; ?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                      <hr>
+					 
                      <p><i class="fa fa-user w3-margin-right w3-text-theme "></i> <span class="link w3-text-theme"><?php echo  strtoupper($buyer_row['buyername']);?></span></p>
                      <p><i class="fa fa-envelope w3-margin-right w3-text-theme "></i> <span class="link w3-text-theme"><?php echo $buyer_row['email']; ?></span></p>
                      <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i><span class="w3-text-theme"><?php echo $buyer_row['address']; ?></span></p>
@@ -210,7 +212,7 @@
                <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
                   <br>
                   <a href="seller_profile.php?id=<?php echo $sellerId;?>"><img src="<?php echo "img/org_coverimg/".$coverimage.""; ?>" alt="Store Image" class="w3-left w3-margin-right w3-block" style="width:60px">
-                  </a><span class="w3-right" style="color:#3c763d"><?php echo"<i class='glyphicon glyphicon-time'></i> " .$time."<br>".$date;?></span>
+                  </a><span class="w3-right badge" style="color:#3c763d;background:rgba(19, 17, 17, 0.13);"><?php echo"<i class='glyphicon glyphicon-time'></i> " .$time."<br>".$date;?></span>
                   <div class="row">
                      <div class="col-sm-2">
                         <a href="seller_profile.php?id=<?php echo $sellerId;?>">
@@ -227,42 +229,67 @@
                   <label for="name" class="product-name"><?php echo"".$productname.""?></label><br>
                   <div class="row" style="padding-bottom:10px">
                      <div class="col-sm-3" ><label for="description" class="badge product-description">Description:  </label></div>
-                     <div class="col-sm-9"><?php echo"".$description.""?></div>
+                     <div class="col-sm-9 div-hover"><?php echo"".$description.""?></div>
                   </div>
+				  <?php
+				  
+				          //getting likes count
+						   $ress=mysqli_query($con,"SELECT COUNT('product_id') as count FROM product_likes where product_id=$productid");
+                           $countRow= mysqli_fetch_array($ress);
+						   $LikesCount=$countRow['count'];
+						   //getting reviews count
+                           $reviewResult=mysqli_query($con,"SELECT COUNT('productid' ) as count FROM productreview where productid=$productid");
+                           $countReview= mysqli_fetch_array($reviewResult);
+						   $ReviewCount=$countReview['count'];		
+				  
+				  
+				  
+				  
+				  ?>
+				  
+				  
+				  
+				  
                   <!--LIKE BUTTON FOR BUYER -->
+				  
                   <div class="row">
-                     <?php if(isset($_SESSION['buyer_user_name'])){
-                        ?>
+				  <div class="">
+                     <?php if(isset($_SESSION['buyer_user_name'])){?>
                      <div class="col-sm-2">
                         <form action="home1.php" method="POST">
                            <input type="hidden" name="product_id" value="<?php echo $productid;?>">
                            <input type="hidden" name="buyer_id" value="<?php echo $buyerid;?>">
                            <input type="hidden" name="seller_id" value="<?php echo $sellerId;?>">
-                           <button type="submit" class="w3-button w3-theme-d1 w3-margin-bottom " value="submit" name="like_submit" ><i>9</i> Likes</button>
+                           <button type="submit" class="btn btn-primary btn-xs btn-block "style="margin-bottom:5px;" value="submit" name="like_submit" ><i><?php echo $LikesCount;?></i> Likes</button>
                         </form>
                      </div>
                      <!--LIKE BUTTON FOR SELLER -->
                      <?php }else{?>
-                     <a onclick="alert('Sorry You Can not Like')">
-                     <button class="w3-button w3-theme-d1 w3-margin-bottom " name="like">8</i>  Likes</button>
-                     </a>
+					 
+                   
+					 <div class="col-sm-2">
+                     <button onclick="return alert('Sorry You Can not Like')" class="btn btn-primary btn-xs btn-block "style="margin-bottom:5px;" name="like"><?php echo $LikesCount;?></i>  Likes</button>
+					 </div>
+                    
+					 
                      <?php }?>
                      <div class="col-sm-2">
                         <!--SHOW REVIEW BUTTON -->
-                        <button class="w3-button w3-theme-d2 w3-margin-bottom button-edge-round" data-toggle="modal" data-target="#<?php echo $productid?>"><i>8</i> Reviews</button> 
+                        <button class="btn btn-primary btn-xs btn-block "style="margin-bottom:5px;" data-toggle="modal" data-target="#<?php echo $productid?>"><i><?php echo $ReviewCount;?></i> Reviews</button> 
                      </div>
-                     <div class="col-sm-2 " style="margin-left:30px">
-                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom button-edge-round">Share</button> 
+                     <div class="col-sm-2 ">
+                        <button class="btn btn-primary btn-xs btn-block" style="margin-bottom:5px;">Share</button> 
                      </div>
                      <?php if(isset($_SESSION['buyer_user_name'])){ ?>
-                     <div class="col-sm-2" style="padding-left:0">
-                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom button-edge-round">Buy (<?php echo"".$quantity.""?>)left!</button> 
+                     <div class="col-sm-3" >
+                        <button type="button" class="btn btn-primary btn-xs btn-block "style="margin-bottom:5px;">Buy(<?php echo"".$quantity.""?>)left!</button> 
                      </div>
-                     <div class="col-sm-2"style="margin-left:30px">
-                        <button data-toggle="modal" data-target="#send_message<?php echo $sellerId?>" type="button" class="w3-button w3-theme-d1 w3-margin-bottom button-edge-round">Message</button> 
+                     <div class="col-sm-2">
+                        <button data-toggle="modal" data-target="#send_message<?php echo $sellerId?>" class="btn btn-primary btn-xs btn-block"style="margin-bottom:5px;">Message</button> 
                      </div>
                      <?php } ?>
                   </div>
+				  </div>
                   <!--MESSAGE MODAL -->
                   <div id="send_message<?php echo $sellerId ;?>" class="modal fade" role="dialog">
                      <div class="modal-dialog">
@@ -320,7 +347,7 @@
                   <!-- comments BUTTON  -->
                   <?php if(isset($_SESSION['buyer_user_name'])){
                      ?><br>
-                  <button style="margin-bottom:5px" class="btn btn-xs btn-success" data-toggle="collapse" data-target="#<?php echo $productid."send"?>">Send Your Review</button>
+                  <button style="margin-bottom:5px" class="btn btn-xs btn-success" data-toggle="collapse" data-target="#<?php echo $productid."send"?>">Post Your Review</button>
                   <div id="<?php echo $productid."send"?>" class="collapse">
                      <form id = "comment_form" action="home1.php" method="POST" enctype="multipart/form-data">
                         <div style="margin-bottom:5px">
