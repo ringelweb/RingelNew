@@ -1,3 +1,4 @@
+<!-- Test-->
 <?php
 require 'includes/connect.php';
 
