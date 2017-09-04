@@ -1,2 +1,0 @@
-# RingelNew
-with enhanced UI
