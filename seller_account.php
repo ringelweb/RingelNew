@@ -1,6 +1,6 @@
 <?php
 	require ("includes/connect.php");
-	require ("seller_handler.php");
+
 	
 	if (isset($_SESSION['user_name'])) {
      $user_name=$_SESSION['user_name'];

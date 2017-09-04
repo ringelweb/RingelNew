@@ -102,6 +102,7 @@
           ?>
 <!DOCTYPE html>
 <html>
+<head>
       <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -112,10 +113,10 @@
            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    
-	<?php include 'includes/header.php'; ?>
-   <body class="margin-container" >
+  </head>  
 
+   <body class="margin-container" >
+	<?php include 'includes/header.php'; ?>
       <div class="container">
      
         <div class="row">
@@ -178,7 +179,35 @@
 				 
 				    </div>
 			  
-               <div class="col-md-6 ">
+        
+     
+         <div class="col-md-6">
+         <div class="panel panel-danger ">
+         <div class="panel-heading">Change Password</div>
+         <div class="panel-body div-hover" >
+         <div class="form-group">
+         <label>Enter Old Password</label>
+         <input type="password" class="form-control" name="old_password" placeholder="">
+         <?php //if(in_array("Incorrect Password!!<br>", $error_array))  echo "Incorrect Password!!<br>";?>
+         </div>
+         <div class="form-group">
+         <label>Enter New Password</label>
+         <input type="password" class="form-control" name="new_password" placeholder="">
+         </div>
+         <div class="form-group">
+         <label>Confirm Password</label>
+         <input type="password" class="form-control" name="confirm_password" placeholder="">
+         <?php if(in_array("Passwords dont match!!<br>", $error_array))  echo "Passwords dont match!!<br>";?>
+         </div>
+  <input onclick="return confirm('Are you sure?')"  type="submit" class="btn btn-block btn-danger " value="Update Password" name="update" style="margin-top:42px">
+         <?php if(in_array("Details have been updated successfully<br>", $display_success_message))  echo "Details have been updated successfully<br>";
+            ?>
+         </div>
+         </div>
+
+		 
+         </div>
+		        <div class="col-md-6 ">
                   <div class="panel panel-danger">
                      <div class="panel-heading">Change Profile Picture</div>
                         <div class="panel-body div-hover" >
@@ -206,33 +235,6 @@
          </form>
          </div>
          </div>
-         </div>
-     
-         <div class="col-md-6">
-         <div class="panel panel-danger ">
-         <div class="panel-heading">Change Password</div>
-         <div class="panel-body div-hover" >
-         <div class="form-group">
-         <label>Enter Old Password</label>
-         <input type="password" class="form-control" name="old_password" placeholder="">
-         <?php //if(in_array("Incorrect Password!!<br>", $error_array))  echo "Incorrect Password!!<br>";?>
-         </div>
-         <div class="form-group">
-         <label>Enter New Password</label>
-         <input type="password" class="form-control" name="new_password" placeholder="">
-         </div>
-         <div class="form-group">
-         <label>Confirm Password</label>
-         <input type="password" class="form-control" name="confirm_password" placeholder="">
-         <?php if(in_array("Passwords dont match!!<br>", $error_array))  echo "Passwords dont match!!<br>";?>
-         </div>
-  <input onclick="return confirm('Are you sure?')"  type="submit" class="btn btn-block btn-danger " value="Update Password" name="update" style="margin-top:42px">
-         <?php if(in_array("Details have been updated successfully<br>", $display_success_message))  echo "Details have been updated successfully<br>";
-            ?>
-         </div>
-         </div>
-
-		 
          </div>
       
          </div>

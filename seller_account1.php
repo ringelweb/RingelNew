@@ -1,6 +1,5 @@
 <?php
 	require ("includes/connect.php");
-	//require ("setting_handler.php");
 	
 	if (isset($_SESSION['user_name'])) {
      $user_name=$_SESSION['user_name'];
@@ -232,56 +231,80 @@ else
  <html>
  <title>Account Settings</title>
  <head>
-     <style>
-        
-     </style>
- <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
    <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <link href="css/style.css" rel="stylesheet">
+   <script src="js/jquery.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+           <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="css/modal.css" rel="stylesheet" type="text/css"  media="all" />
-        <!-- Custom CSS -->
-       
-        <!-- jQuery -->
-        <script src="js/jquery.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+  </head>  
 
-  </head>
  
   <body>
-      <?php include 'includes/header.php'; ?>
-<center><h3>Account Settings</h3></center>
- 
-
+ <body class="margin-container" >
+	<?php include 'includes/header.php'; ?>
+      <div class="container">
+     
+        <div class="row">
+            <div class="col-md-12 ">
+               <div class="panel panel-primary panel_setting" >
+                  <div class="panel-heading panel_heading_height">
+                     <span class="glyphicon glyphicon-cog font-icon" aria-hidden="true"> Account Settings</span>&nbsp;&nbsp;&nbsp;
+    
+                  </div>
+				  </div>
+				  </div>
+	
+			  </div>
+ <?php if(isset($msg) && $msg!=""){?>
+			  
+ <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <center> <strong>Alert:     </strong><?php echo $msg; ?></center>
+ </div>			  				  
+			  <?php } ?>  
+			  
+			  
+			 <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <center> <strong> Alert:     </strong> 
+			 <?php if(in_array("Details have been updated successfully<br>", $display_success_message))  $msg="Deltails Updated Successfully";
+						 ?>  
+			</center>
+ </div>			  				  
+			  
+			  
+			  
+			  
+			  
+			  
 
 		<form id = "update" action="seller_account1.php" method="POST" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-6 ">
-			  			<div class="panel panel-success">
+			  			<div class="panel panel-danger">
 					      <div class="panel-heading">Personal Settings</div>
-					      <div class="panel-body">
+					      <div class="panel-body" style="
+    margin-bottom: 10px">
 
 					      		<div class="form-group">
 								    <label>Name</label>
-								    <div class="well"><?php echo $ownername; ?></div>
+								  
+									 <input name="" type="text" class="form-control" value="<?php echo $ownername; ?>" readOnly>
 								</div>
 								<div class="form-group">
 									<label>Gender</label><br>
-								    <div class="well"><?php echo $gender; ?></div>
+								
+									 <input name="" type="text" class="form-control" value="<?php echo $gender; ?>" readOnly>
 								</div>
 								<div class="form-group">
 								    <label>D.O.B</label>
-								    <div class="well"><?php echo $dob; ?></div>
+								
+									 <input name="" type="text" class="form-control" value="<?php echo $dob; ?>" readOnly>
 								</div>
 
 								<div class="form-group">
@@ -291,36 +314,48 @@ else
 
 								<div class="form-group">
 								    <label>Mobile</label>
-								    <textarea class="form-control"  name="contact"  ><?php echo $contact; ?></textarea>
+									 <input name="contact" type="number" class="form-control" value="<?php echo $contact; ?>" >
+								  
 								</div><br>
 
 								<div class="form-group">
 								    <label>Email</label>
-								     <textarea class="form-control"  name="owner_email"  ><?php echo $email; ?></textarea>
 								    
+								    <input type="email"  name="owner_email" class="form-control" value="<?php echo $email; ?>" >
 								    
 								</div>
 								<br><br>
 
 
 
-
+ <input type="submit" class="btn btn-block btn-danger " value="Update Personal Detail" name="update">
+             
 					      </div>
+						  
 					    </div>
+						
 			  		</div>
-
+			
+					  
+					
+					
+					
+					
+				
 			  		<div class="col-md-6 ">
-			  			<div class="panel panel-info">
+			  			<div class="panel panel-danger">
 					      <div class="panel-heading">Store Settings</div>
-					      <div class="panel-body">
+					      <div class="panel-body" >
 
 					      	<div class="form-group">
 								    <label>Store Name</label>
-								    <div class="well"><?php echo $orgname; ?></div>
+							        <input type="text" class="form-control" value="<?php echo $orgname; ?>" readOnly>
+								
 								</div>
 								<div class="form-group">
 									<label>Category</label>
-								    <div class="well"><?php echo $category; ?></div>
+								   
+									 <input type="text" class="form-control" value="<?php echo $category; ?>" readOnly>
 								</div>
 								<div class="form-group">
 								    <label>Address</label>
@@ -329,54 +364,59 @@ else
 
 								<div class="form-group">
 								    <label>Contact</label>
-                                                                        <textarea class="form-control"  name="contact"  ><?php echo $contact; ?></textarea>								    
+                                
+                                  <input type="number" name="contact" class="form-control" value="<?php echo $contact; ?>">								  
 								</div>
 
 								<div class="form-group">
 								    <label>Email</label>
-								     <textarea class="form-control"  name="org_email"  ><?php echo $orgemail; ?></textarea>
-
+								   
+                                    <input type="email" name="org_email"  class="form-control" value="<?php echo $orgemail; ?>">	
 						
 								    
 								</div>
 
 								<div class="form-group">
 								    <label>Website</label>
-								    <textarea class="form-control"  name="website"  ><?php echo $siteurl; ?></textarea>
-								    
-								    
-								</div><br>
-
-								<div class="form-group">
-								    <label>Store Description</label>
-								     <textarea class="form-control"  name="org_description"  ><?php echo $description; ?></textarea>
+	
+								    <input type="url" name="org_email"  class="form-control" value="<?php echo $siteurl; ?>">	
 								    
 								</div>
 
+								<div class="form-group">
+								    <label>Store Description</label>
+								    <textarea class="form-control"  name="org_description"  ><?php echo $description; ?></textarea>
+								    
+								</div>
+ <input type="submit" class="btn btn-block btn-danger " value="Update Store Details" name="update">
+             
 					      </div>
+						  
 					    </div>
+						
 			  		</div>
+					
 			  	</div>
 
 			  	<div class="row">
 					<div class="col-md-6 ">
-			  			<div class="panel panel-warning">
+			  			<div class="panel panel-danger">
 					      <div class="panel-heading">Bank Details</div>
 					      <div class="panel-body">
 
-					      	<div class="form-group">
+					      	<div class="">
 								    <label>Account no.</label>
 								    <input type="text" class="form-control" name="acc_no" placeholder="<?php echo $acc_no; ?>">
 								    
 							</div>
 
-							<div class="form-group">
+							<div class="">
 								    <label>IFSC</label>
 								    <input type="text" class="form-control" name="ifsc" placeholder="<?php echo $ifsc; ?>">
 								    
 							</div>
 
-							<div class="form-group">
+							<div class="">
 								    <label>Holder's Name</label>
 								    <input type="text" class="form-control" name="holder_name" placeholder="<?php echo $holder_name; ?>">
 								    
@@ -388,29 +428,31 @@ else
 								    
 							</div>
 					      		
-
+ <input type="submit" class="btn btn-block btn-danger " value="Update Bank Details" name="update">
+             
 					      </div>
 					    </div>
 			  		</div>
-
+    
 			  		<div class="col-md-6 ">
 			  			<div class="panel panel-danger">
 					      <div class="panel-heading">Change Password</div>
-					      <div class="panel-body">
+					      <div class="panel-body" style="
+    margin-bottom: 6px;">
 
 					      	<div class="form-group">
 								    <label>Enter Old Password</label>
 								    <input type="password" class="form-control" name="old_password" placeholder="">
 								    
 								    
-							</div><br>
+							</div>
 
 							<div class="form-group">
 								    <label>Enter New Password</label>
 								    <input type="password" class="form-control" name="new_password" placeholder="">
 								    
 								    
-							</div><br>
+							</div>
 
 							<div class="form-group">
 								    <label>Confirm Password</label>
@@ -419,74 +461,52 @@ else
 								    
 							</div>
 							<br><br>
+							 <input type="submit" class="btn btn-block btn-danger " value="Confirm" name="update">
+            
 
 
 					      </div>
 					    </div>
 			  		</div>
 			  	</div>
-
-			  	<div class="row">
-                                   
-					<div class="col-md-6">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-						      <div class="panel-body">
-                                                          <?php
-    /*
-                                                            $sql= "SELECT coverimage FROM org_info";
-                                                            $result=mysqli_query($con, $sql);
-                                                            while($row= mysqli_fetch_array($result))
-                                                                {
-                                                                echo "<div id= 'img_div'>";
-        
-                                                            echo  "<img src='img/org_coverimg/".$row['coverimage']."'>";
-                                                            echo "<p>".$row['text']."</p>";
-                                                            echo "</div>";
-       
-                                                                } */
-    
-                                                             ?>
-
-						      	 <form action="seller_account1.php" class="form-group" method="POST">
+		<div class="row">
+		<div class="col-md-6 "></div>
+					 <div class="col-md-6 ">
+                  <div class="panel panel-danger">
+                     <div class="panel-heading">Change Profile Picture</div>
+                        <div class="panel-body div-hover" >
+                           <?php
+                              /*
+                                                                                      $sql= "SELECT coverimage FROM org_info";
+                                                                                      $result=mysqli_query($con, $sql);
+                                                                                      while($row= mysqli_fetch_array($result))
+                                                                                          {
+                                                                                          echo "<div id= 'img_div'>";
+                                  
+                                                                                      echo  "<img src='img/org_coverimg/".$row['coverimage']."'>";
+                                                                                      echo "<p>".$row['text']."</p>";
+                                                                                      echo "</div>";
                                  
-                                                          		    
-                                                          <input type='hidden' name='size' value='1000000'>
-                                                <div>
-                                                    Select image to upload:<input type="file" name="image">
-                                                    <input  class ="form-control btn btn-success" type="submit" value="Change Cover Image" name="upload">
-                                             
-                                               </div>
-                                                         </form>
-                                                      
-                                                           
+                                                                                          } */
+                              
+                                                                                       ?>
+         <form action="seller_account1.php" class="form-group" method="POST">
+         <input class="form-control" type='hidden' name='size' value='1000000'>
+         <div class="form-group">
+         Select image to upload:<input class="form-control" type="file" name="image">
+         </div>
+		 <input  class ="form-control btn btn-danger" type="submit" value="Change Profile Image" name="upload">
+         </form>
+         </div>
+         </div>
+         </div>
+		 </div>
 
-								
-
-      
-								   
-
-						      </div>
-					    </div>
-					</div>
-                                        </div>
-                                
-					
-					<div class=" col-md-offset-2 col-md-2">
-				 <input type="submit" class="btn btn-block btn-success " value="Update" name="update">
-				 <?php if(in_array("Details have been updated successfully<br>", $display_success_message))  echo "Details have been updated successfully<br>";
-						 ?>
-				 </div>
-			  		
-                                </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+               
                                 
 
 			
-	
+	</div>
 <?php include("includes/footer.php"); 
 $user_name=$_SESSION['user_name'];
      $sellerid=$_SESSION['sellerid'];?>
