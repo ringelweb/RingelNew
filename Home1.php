@@ -1,7 +1,6 @@
 <?php 
    require 'includes/connect.php';
-   $currentpage = $_SERVER['REQUEST_URI'];
-					   echo "<script>alert($currentpage)</script>";
+   
    
    /*
    if (isset($_SESSION['buyer_user_name'])||isset($_SESSION['user_name'])){
@@ -82,6 +81,7 @@
 <!-- Message System ends -->
 <!DOCTYPE html>
 <html>
+<head>
    <title>Welcome to Home Feed</title>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -94,6 +94,14 @@
    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <link href="css/modal.css" rel="stylesheet" type="text/css"  media="all" />
+   <style>
+   .affix {
+    top:50px;
+    position:fixed;
+	z-index: 99 !important;
+}
+   </style>
+   </head>
    <body class="w3-theme-l5">
       <?php include 'includes/header.php'; ?>
       <div class="w3-container w3-content container" style="max-width:1400px;margin-top:70px">
@@ -106,9 +114,10 @@
          </div>
          <?php }?>
          <!-- The Grid -->
-         <div class="w3-row">
+         <div class="w3-row" >
             <!-- Left Column for seller STARTS -->
-            <div class="w3-col m3 ">
+            <div class="w3-col m3 " style="
+    margin-right: 10px;">
                <?php if(isset($_SESSION['user_name'])) { 
                   $user_name=$_SESSION['user_name'];
                   $idresult=mysqli_query($con,"SELECT id FROM users WHERE username='".$user_name."'"); 
@@ -119,7 +128,10 @@
                      $org_info_row= mysqli_fetch_array( $org_info_result);       
                             
                             ?>
-               <div class="w3-card-2 w3-round w3-white">
+               <div class="w3-card-2 w3-round w3-white" style="
+    padding-left: 5px;
+    padding-right: 5px;
+">
                   <div class="w3-container">
                      <h3 style="font-weight:600;color:green" class="w3-center">Seller's Profile</h3>
                      <p class="w3-center"> <img src="<?php echo "img/org_coverimg/".$org_info_row['coverimage'].""; ?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
@@ -128,6 +140,16 @@
                      <p><i class="fa fa-link w3-margin-right w3-text-theme "> <span class="link w3-text-theme"><?php echo $org_info_row['siteurl']; ?></span></i></p>
 					 <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i><span class="w3-text-theme"><?php echo $org_info_row['address']; ?></span></p>
                   </div>
+				   <?php if(isset($_SESSION['user_name'])) { ?>
+               <div class="container-fluid" data-spy="affix" data-offset-top="200" class="w3-row-padding " style="width:100%;left: 0px;padding-left: 0px;padding-right: 0px;">
+                  
+                           <center> 
+                              <button onclick="location.href = 'postproduct.php'" id="myButton" class="btn btn-success btn-block" >Post New Product</button>
+                           </center>
+                    
+               </div>
+               <?php } ?>
+			   <br>
                </div>
                <?php } ?>
                <!-- Left Column for seller ENDS -->
@@ -143,7 +165,10 @@
                   $buyer_row= mysqli_fetch_array($buyer_result);
                   
                      ?>
-               <div class="w3-card-2 w3-round w3-white">
+               <div class="w3-card-2 w3-round w3-white" style="
+    padding-left: 5px;
+    padding-right: 5px;
+">
                   <div class="w3-container">
                      <h3 style="font-weight:600;color:green" class="w3-center">Buyer's Profile</h3>
                      <p class="w3-center"> <img src="<?php echo "img/buyer_img/".$buyer_row['profilepic'].""; ?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
@@ -160,19 +185,7 @@
             <!-- .................................................................................................................................-->	
             <!-- TOP SHOW IF SELLER -->
             <div class="w3-col m7">
-               <?php if(isset($_SESSION['user_name'])) { ?>
-               <div class="w3-row-padding " style="width:100%">
-                  <div class="w3-col m12 btn btn-primary">
-                     <div class="w3-card-2 w3-round w3-white btn btn-primary ">
-                        <div class="w3-container w3-padding ">
-                           <center> 
-                              <button onclick="location.href = 'postproduct.php'" id="myButton" class="btn btn-primary" >Post New Product</button>
-                           </center>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <?php } ?>
+              
                <!-- END TOP SHOW IF SELLER -->
                <?php
                   /*
@@ -209,7 +222,8 @@
                   	         $likeFlag="flag".$productid;
                   			 $likeFlag=0;
                                   ?>
-               <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+               <div class="w3-container w3-card-2 w3-white w3-round" style="
+    margin-bottom: 10px">
                   <br>
                   <a href="seller_profile.php?id=<?php echo $sellerId;?>"><img src="<?php echo "img/org_coverimg/".$coverimage.""; ?>" alt="Store Image" class="w3-left w3-margin-right w3-block" style="width:60px">
                   </a><span class="w3-right badge" style="color:#3c763d;background:rgba(19, 17, 17, 0.13);"><?php echo"<i class='glyphicon glyphicon-time'></i> " .$time."<br>".$date;?></span>

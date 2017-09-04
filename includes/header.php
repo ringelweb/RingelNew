@@ -16,7 +16,7 @@
                 if (isset($_SESSION['user_name'])) {
                     ?>
                 <li><a href = "home1.php"><span class = "glyphicon glyphicon-home"></span> Home </a></li>
-                    <li><a href = "seller_account.php"><span class = "glyphicon glyphicon-cog"></span> Settings </a></li>
+                    <li><a href = "seller_account1.php"><span class = "glyphicon glyphicon-cog"></span> Settings </a></li>
                     <li><a href = "seller_profile.php"><span class = "glyphicon glyphicon-user"></span> Profile</a></li>
                     <li><a href = "logout_script.php"><span class = "glyphicon glyphicon-log-out"></span> Logout</a></li>
                    
@@ -88,9 +88,14 @@
         </div>
         <div class="modal-footer">
         <div style="float:left;margin-left:20px;" class="row">
-          <button readOnly class="loginBtn loginBtn--facebook">Login with Facebook</button></div> 
-          <input type="submit" class="btn btn-primary" value="login">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <button readOnly class="loginBtn loginBtn--facebook" style="margin-top:0px">Login with Facebook</button></div> 
+          <input type="submit" class="btn btn-primary" value="login" style="
+    padding-bottom: 6px;
+    margin-bottom: 5px;
+    padding-right: 19px;
+    padding-left: 19px;
+">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-bottom: 5px;">Cancel</button>
         </div>
       </div>
       </form> 

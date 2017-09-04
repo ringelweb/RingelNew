@@ -1,6 +1,9 @@
+<!-- TEST FOR FILE-->
+<!-- TESTING-->
 <?php
 require 'includes/connect.php';
-
+  $currentpage = $_SERVER['REQUEST_URI'];
+   echo "<script>alert($currentpage)</script>";
  //Declaring variables to prevent error
 if(isset($_SESSION['buyer_user_name'])||isset($_SESSION['user_name']))
 {
@@ -142,7 +145,7 @@ if(isset($_POST['buyer_reg'])){
   </span>
   
  <div class="form-group">
-<input type="submit" value="Join Ringel" name="buyer_reg" class="btn btn-primary">
+<input type="submit" value="Join Ringel" name="buyer_reg" class="btn btn-primary" >
 </div>
   </form>
  <strong> OR</strong><br>
