@@ -44,7 +44,8 @@ if(isset($_POST['buyer_reg'])){
  	if($count > 0)
  		array_push($error_array, "This user id is taken...<br>");
  	if(empty($error_array)) {
- 		$query =mysqli_query($con,"INSERT INTO buyer_users VALUES ('','$buyer_user_name','$pass_1')");
+ 		$query ="INSERT INTO buyer_users(username,password) VALUES ('$buyer_user_name','$pass_1')";
+		$user_registration_submit = mysqli_query($con, $query) or die(mysqli_error($con));
                 session_start();
                 $_SESSION['buyer_user_name'] =$buyer_user_name;
  		header("Location: home1.php");
