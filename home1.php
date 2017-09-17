@@ -116,8 +116,7 @@
          <!-- The Grid -->
          <div class="w3-row" >
             <!-- Left Column for seller STARTS -->
-            <div class="w3-col m3 " style="
-    margin-right: 10px;">
+            <div class="w3-col m3 " style="margin-right: 10px;">
                <?php if(isset($_SESSION['user_name'])) { 
                   $user_name=$_SESSION['user_name'];
                   $idresult=mysqli_query($con,"SELECT id FROM users WHERE username='".$user_name."'"); 
@@ -128,10 +127,7 @@
                      $org_info_row= mysqli_fetch_array( $org_info_result);       
                             
                             ?>
-               <div class="w3-card-2 w3-round w3-white" style="
-    padding-left: 5px;
-    padding-right: 5px;
-">
+               <div class="w3-card-2 w3-round w3-white" style="padding-left: 5px;padding-right: 5px;">
                   <div class="w3-container">
                      <h3 style="font-weight:600;color:green" class="w3-center">Seller's Profile</h3>
                      <p class="w3-center"> <img src="<?php echo "img/org_coverimg/".$org_info_row['coverimage'].""; ?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
@@ -165,10 +161,7 @@
                   $buyer_row= mysqli_fetch_array($buyer_result);
                   
                      ?>
-               <div class="w3-card-2 w3-round w3-white" style="
-    padding-left: 5px;
-    padding-right: 5px;
-">
+               <div class="w3-card-2 w3-round w3-white" style="padding-left: 5px; padding-right: 5px;">
                   <div class="w3-container">
                      <h3 style="font-weight:600;color:green" class="w3-center">Buyer's Profile</h3>
                      <p class="w3-center"> <img src="<?php echo "img/buyer_img/".$buyer_row['profilepic'].""; ?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
