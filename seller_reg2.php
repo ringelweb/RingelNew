@@ -12,7 +12,7 @@ $error_array = array();
 if(isset($_POST['user_reg'])){
 
 	$user_id = strip_tags($_POST['user_name']); 
- 	$_SESSION['user_name'] = $user_id; 
+ 	//$_SESSION['user_name'] = $user_id; 
 
  	$pass_1 = strip_tags($_POST['pass1']);
 
@@ -47,14 +47,17 @@ if(isset($_POST['user_reg'])){
 
  	if(empty($error_array)) {
 
- 		$query =mysqli_query($con,"INSERT INTO users VALUES ('','$user_id','$pass_1')");
-                session_start();
-                $_SESSION['user_name'] =$user_id;
- 		header("Location: home1.php");
+ 		//$query =mysqli_query($con,"INSERT INTO users VALUES ('','$user_id','$pass_1')");
+		
+		$query ="INSERT INTO users(username,password) VALUES ('$user_id','$pass_1')";
+		$seller_registration_submit = mysqli_query($con, $query) or die(mysqli_error($con));
+		
+                //session_start();
+                //$_SESSION['user_name'] =$user_id;
+ 		header("Location: index.php");
 
  		
- 		$_SESSION['pass1'] = "";
- 		$_SESSION['pass2'] = "";
+ 		
  		
 
 	}
