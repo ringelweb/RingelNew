@@ -1,7 +1,7 @@
 <?php
 require 'includes/connect.php';
   $currentpage = $_SERVER['REQUEST_URI'];
-   echo "<script>alert($currentpage)</script>";
+  echo "<script>alert($currentpage)</script>";
  //Declaring variables to prevent error
 if(isset($_SESSION['buyer_user_name'])||isset($_SESSION['user_name']))
 {
@@ -15,7 +15,7 @@ $error_array = array();
 if(isset($_POST['buyer_reg'])){
 
 	$buyer_user_name = strip_tags($_POST['user_name']); 
- 	$_SESSION['buyer_user_name'] = $buyer_user_name; 
+ 	//$_SESSION['buyer_user_name'] = $buyer_user_name; 
 
  	$pass_1 = strip_tags($_POST['pass1']);
 
@@ -46,11 +46,9 @@ if(isset($_POST['buyer_reg'])){
  	if(empty($error_array)) {
  		$query ="INSERT INTO buyer_users(username,password) VALUES ('$buyer_user_name','$pass_1')";
 		$user_registration_submit = mysqli_query($con, $query) or die(mysqli_error($con));
-                session_start();
-                $_SESSION['buyer_user_name'] =$buyer_user_name;
- 		header("Location: home1.php");
- 		$_SESSION['pass1'] = "";
- 		$_SESSION['pass2'] = "";
+                
+		header('location: index.php');
+   
 	}
 }
  	?>

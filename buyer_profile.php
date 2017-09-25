@@ -84,16 +84,7 @@
                   </div>
                   <div class="panel-body">
                    
-					  <div class=" col-md-2 row-control">
-                        <button class="btn btn-success btn-block">
-                        <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
-                        Following</button>
-                     </div>
-                     <div class="  col-md-2 row-control">
-                        <button class="btn btn-success btn-block">
-                        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-                        Followers</button>
-                     </div>
+					  
 					   <div class=" col-md-2 row-control">
                         <button class="btn btn-success btn-block">
                         <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
@@ -135,7 +126,7 @@
                      <div class="col-md-2 row-control">
                         <button class="btn btn-success btn-block" data-toggle="modal" data-target="#check_inbox" >
                         <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                        View Inbox
+                        Notification
                         <?php
                            $query_notif = "SELECT * FROM pvt_msgs WHERE _to = '".$buyer_user_name."'  ";
                            if($run_query_notif = mysqli_query($con,$query_notif))
@@ -257,7 +248,7 @@ Account Setting</button></a></center>
 			  
            <div class="row">
          <div class="panel panel-danger panel_setting ">
-         <div class="panel-heading">Shared Post</div>
+         <div class="panel-heading">Order</div>
          <div class="panel-body div-hover" >
                   <div class="panel-body">
                   <div class="row">

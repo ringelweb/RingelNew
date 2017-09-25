@@ -144,8 +144,16 @@ echo "<script type='text/javascript'>alert('$sell_email');</script>";
 
  		
  		
- 		$query =mysqli_query($con,"INSERT INTO seller_info VALUES ('','$sell_name','$gen','$dob','$sell_address','$sell_mobile','$sell_email', 'no')");
- 		$query2 = mysqli_query($con,"INSERT INTO org_info VALUES ('','$store_name','$cat','$store_address','$store_contact','$store_email','$website','$cover_img','$descrip')");
+ 		//$query =mysqli_query($con,"INSERT INTO seller_info VALUES ('','$sell_name','$gen','$dob','$sell_address','$sell_mobile','$sell_email', 'no')");
+ 		//$query2 = mysqli_query($con,"INSERT INTO org_info VALUES ('','$store_name','$cat','$store_address','$store_contact','$store_email','$website','$cover_img','$descrip')");
+		
+		
+		$query1 ="INSERT INTO seller_info(ownername,gender,dob,address,mobile,email,bank_details_filled) VALUES ('$sell_name','$gen','$dob','$sell_address','$sell_mobile','$sell_email', 'no')";
+		$result1=mysqli_query($con, $query1) or die(mysqli_error($con));
+		
+		$query2 ="INSERT INTO org_info(orgname,category,address,contact,email,siteurl,coverimage,description) VALUES ('$store_name','$cat','$store_address','$store_contact','$store_email','$website','$cover_img','$descrip')";
+		$result2=mysqli_query($con, $query2) or die(mysql_error($con));
+		
  		header("Location: seller_reg2.php");
 
 
