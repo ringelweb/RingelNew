@@ -54,7 +54,7 @@ if(isset($_POST['user_reg'])){
 		
                 //session_start();
                 //$_SESSION['user_name'] =$user_id;
- 		header("Location: index.php");
+ 		header("Location: index.php?msg=Registration Successful!");
 
  		
  		

@@ -47,7 +47,7 @@ if(isset($_POST['buyer_reg'])){
  		$query ="INSERT INTO buyer_users(username,password) VALUES ('$buyer_user_name','$pass_1')";
 		$user_registration_submit = mysqli_query($con, $query) or die(mysqli_error($con));
                 
-		header('location: index.php');
+		header('location: index.php?msg=Registration Successful!');
    
 	}
 }
