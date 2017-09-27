@@ -1,8 +1,9 @@
+<script>console.log("initialized")</script>
 <?php
 require 'includes/connect.php';
   $currentpage = $_SERVER['REQUEST_URI'];
-  echo "<script>alert($currentpage)</script>";
  //Declaring variables to prevent error
+
 if(isset($_SESSION['buyer_user_name'])||isset($_SESSION['user_name']))
 {
     header('Location: home1.php');
@@ -52,10 +53,6 @@ if(isset($_POST['buyer_reg'])){
 	}
 }
  	?>
-
-
-
-
 
 
 <!DOCTYPE html>
@@ -146,7 +143,12 @@ if(isset($_POST['buyer_reg'])){
 </div>
   </form>
  <strong> OR</strong><br>
- <button class="loginBtn loginBtn--facebook">Login with Facebook</button></div>
+<!-- <button class="loginBtn loginBtn--facebook">Login with Facebook</button></div>-->
+
+<fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
  
  
   </div>
@@ -159,6 +161,33 @@ if(isset($_POST['buyer_reg'])){
 <br><br><br><br><br>
 
 <?php include ("includes/footer.php") ?>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '117435878945475',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();   
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+   
+   
+   
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+</script>
 </body>
 
 </html>
