@@ -4,12 +4,13 @@
 	if (isset($_SESSION['user_name'])) {
      $user_name=$_SESSION['user_name'];
      $sellerid=$_SESSION['sellerid'];
-     
+     if (isset($_POST['old_password'])) {
         $old_password = strip_tags($_POST['old_password']);
-        $old_password= md5($old_password);
-	$_SESSION['old_password']  = $old_password;
+	   $old_password= md5($old_password);
+	   $_SESSION['old_password']  = $old_password;
+	 }
         
-
+ if (isset($_POST['new_password'])) {
 	$new_password = strip_tags($_POST['new_password']);
         $new_password1= md5($new_password);
 	$_SESSION['new_password']  = $new_password;
@@ -17,9 +18,9 @@
 	$confirm_password = strip_tags($_POST['confirm_password']);
 	$_SESSION['confirm_password']  = $confirm_password;
         
+ }
 
-
-$result = mysqli_query($con,"SELECT ownername , gender , dob , address , mobile , email , bank_details_filled FROM seller_info WHERE sellerid ='".$sellerid."'"); 
+$result = mysqli_query($con,"SELECT* FROM seller_info WHERE sellerid ='".$sellerid."'"); 
 $row=mysqli_fetch_array($result);
 $ownername = $row['ownername'];
 $gender = $row['gender'];
@@ -40,25 +41,29 @@ $siteurl=$row1['siteurl'];
 $description=$row1['description']; 
 
 $display_success_message = array();
-
+$error_array=array();
 
         //array_push($display_success_message, "");
  //if filling data for the first time
 //this might cause an error because initially it is empty but data is getting updated into the database!
 if($bank_details_filled == 'no')
 {
+	if (isset($_POST['acc_no'])) {
 	$acc_no = strip_tags($_POST['acc_no']); 
  	$_SESSION['acc_no'] = $acc_no;
-
+	}
+	if (isset($_POST['ifsc'])) {
  	$ifsc = strip_tags($_POST['ifsc']); 
  	$_SESSION['ifsc'] = $ifsc;
-
+	}
+	if (isset($_POST['holder_name'])) {
  	$holder_name = strip_tags($_POST['holder_name']); 
  	$_SESSION['holder_name'] = $holder_name;
-
+	}
+	if (isset($_POST['branch_address'])) {
  	$branch_address = strip_tags($_POST['branch_address']); 
  	$_SESSION['branch_address'] = $branch_address;
-}
+}}
 else    
 {	//if already filled ,that is not logging in for the first time then retrieve already stored data and show
 	$query_acc = mysqli_query($con,"SELECT * FROM seller_accinfo WHERE sellerid ='".$sellerid."'");
@@ -79,7 +84,7 @@ else
 
 
  	
-$p_check = mysqli_query($con,"SELECT password FROM users WHERE id='$sellerid' and password='$old_password'");
+$p_check = mysqli_query($con,"SELECT password FROM users WHERE id='$sellerid'");
         $num_rows4 = mysqli_num_rows($p_check);
         if(isset($_POST['upload'])){
              $target = "img/org_coverimg/".basename($_FILES['image']['name']);
@@ -114,11 +119,14 @@ if(isset($_POST['update'])){
  	$store_contact = strip_tags($_POST['contact']);
  	$_SESSION['contact'] = $store_contact;
 
+	if(isset($_POST['mobile'])){
  	$sell_mobile = strip_tags($_POST['mobile']);
  	$_SESSION['mobile'] = $sell_mobile;
-
+	}
+	if(isset($_POST['website'])){
  	$website = strip_tags($_POST['website']);
  	$_SESSION['website'] = $website;
+	}
 
  	$descrip = strip_tags($_POST['org_description']);
  	$_SESSION['org_description'] = $descrip;
@@ -187,8 +195,8 @@ if(isset($_POST['update'])){
  	} */
        
         
-        $result2=mysqli_query($con,"UPDATE seller_info SET address= '".$sell_address."' , mobile='".$sell_mobile."' , email= '".$sell_email."'  WHERE sellerid='$sellerid'");
-        $result3= mysqli_query($con,"UPDATE org_info SET address= '".$store_address."' , contact='".$store_contact."' , email= '".$store_email."', siteurl='".$website."', description='".$descrip."' WHERE sellerid='$sellerid'"); 
+        $result2=mysqli_query($con,"UPDATE seller_info SET address= '".$sell_address."' , mobile='".$mobile."' , email= '".$sell_email."'  WHERE sellerid='$sellerid'");
+        $result3= mysqli_query($con,"UPDATE org_info SET address= '".$store_address."' , contact='".$store_contact."' , email= '".$store_email."', siteurl='".$siteurl."', description='".$descrip."' WHERE sellerid='$sellerid'"); 
 	
 if($num_rows4 == 0)
  	{
@@ -260,28 +268,15 @@ else
 				  </div>
 	
 			  </div>
- <?php if(isset($msg) && $msg!=""){?>
+			  
+			 
+ <?php if(isset($_GET['msg']) && $_GET['msg']!=""){?>
 			  
  <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-           <center> <strong>Alert:     </strong><?php echo $msg; ?></center>
+           <center> <strong>Alert:     </strong><?php echo $_GET['msg']; ?></center>
  </div>			  				  
-			  <?php } ?>  
-			  
-			  
-			 <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-           <center> <strong> Alert:     </strong> 
-			 <?php if(in_array("Details have been updated successfully<br>", $display_success_message))  $msg="Deltails Updated Successfully";
-						 ?>  
-			</center>
- </div>			  				  
-			  
-			  
-			  
-			  
-			  
-			  
+<?php } ?>    
 
 		<form id = "update" action="seller_account1.php" method="POST" enctype="multipart/form-data">
 				<div class="row">
@@ -509,7 +504,8 @@ else
 	</div>
 <?php include("includes/footer.php"); 
 $user_name=$_SESSION['user_name'];
-     $sellerid=$_SESSION['sellerid'];?>
+     $sellerid=$_SESSION['sellerid'];
+	 ?>
  </body>
 
  
