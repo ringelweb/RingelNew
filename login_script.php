@@ -24,7 +24,7 @@ if ($num == 0) {
   header('location: index.php?error=' . $error);
 } else {  
   $row = mysqli_fetch_array($result);
-  $_SESSION['buyer_user_name'] = $row['username'];
+  $_SESSION['buyer_user_name']= $row['username'];
   $_SESSION['buyerid'] = $row['buyerid'];
   header('location:home1.php');
 }
@@ -53,5 +53,6 @@ if ($num == 0) {
   $row = mysqli_fetch_array($result);
   $_SESSION['user_name'] = $row['username'];
   $_SESSION['sellerid'] = $row['id'];
+  echo $_SESSION['user_name'];
   header('location:home1.php');
 }}

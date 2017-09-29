@@ -57,4 +57,4 @@ $sellerid=$row['id'];
 </html>
 
 <?php  }
-header("Location :home1.php");?>
+?>

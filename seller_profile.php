@@ -1,11 +1,9 @@
 <?php
 
 require 'includes/connect.php';
-//$user_name=$_SESSION['user_name'];
-//$sellerid=$_SESSION['sellerid'];
-//$sellerid=$_SESSION['sellerid'];
-$buyer_user_name=$_SESSION['buyer_user_name'];
-$buyerid=$_SESSION['buyerid'];
+$user_name=$_SESSION['user_name'];
+$sellerid=$_SESSION['sellerid'];
+$sellerid=$_SESSION['sellerid'];
 
 
  //Declaring variables to prevent error
@@ -97,62 +95,22 @@ $num_follow= mysqli_num_rows($follow_result);
 
 
 ?>
-
-
-
-
-<!DOCTYPE html>
- <html>
- <title>Account Settings</title>
- <head>
-
- <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/seller_profile.css">
-
+   <title>Welcome to Home Feed</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
    <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <link href="css/style.css" rel="stylesheet">
+   <script src="js/jquery.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+           <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="css/modal.css" rel="stylesheet" type="text/css"  media="all" />
-        <!-- Custom CSS -->
-       <style type="text/css">
-       	.notification_badge {
-	padding: 3px 7px;
-	font-size: 12px;
-	font-weight: 700;
-	line-height: 1;
-	color: #fff;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: baseline;
-	background-color: #F00;
-	border-radius: 10px;
-	position: absolute;
-	left: 8px;
-	top: -5px;
-}
-       </style>
-        <!-- jQuery -->
-        <script src="js/jquery.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
-
-  </head>
-  <body>
+   <body >
       <?php include 'includes/header.php';
-     // $user_name=$_SESSION['user_name'];
-    // $sellerid=$_SESSION['sellerid'];
-     $buyer_user_name=$_SESSION['buyer_user_name'];
-     $buyerid=$_SESSION['buyerid'];?>
+      $user_name=$_SESSION['user_name'];
+     $sellerid=$_SESSION['sellerid'];
+   ?>
   	<div class="container margin-container">
   		 <?php
 
@@ -202,9 +160,11 @@ $num_follow= mysqli_num_rows($follow_result);
             <?php if(empty($_GET)) { ?>
 		<div class="col-md-12 ">
 	  			<div class="panel panel-primary panel_setting" >
+				      
 				      <div class="panel-heading panel_heading_height">
-				      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;
-				      <label id="profile_label">Profile</label></div>
+                     <span class="glyphicon glyphicon-user font-icon" aria-hidden="true"> Profile</span>&nbsp;&nbsp;&nbsp;
+    
+                  </div>
 					      <div class="panel-body">
 
 					      	
@@ -422,10 +382,7 @@ $num_follow= mysqli_num_rows($follow_result);
   		<div class="col-md-4">
 
   			<div class="panel panel-info panel_setting" >
-				      
 					      <div class="panel-body">
-
-					      	
 								    	<label>Store Image</label>
 								    	<!--<img src="img/product_img/coder.jpg" height="100px">-->
 								    	<div class="row">
@@ -437,14 +394,9 @@ $num_follow= mysqli_num_rows($follow_result);
 										  </div>
 										  
 										</div>
-																		
-
-
-
-
+																
 					      </div>
 			    </div>
-  			
   		</div>
 
   		</div>
@@ -549,21 +501,13 @@ $num_follow= mysqli_num_rows($follow_result);
   				<a href="seller_account1.php"><button class="btn btn-danger btn-block">
 								    		<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
 								    		Account Setting</button></a>
-                            <?php } ?>
-  				
+                            <?php } ?>			
   			</div>
-
-
   		</div>
-
-
-
   	</div>
       <?php 
-    //  $user_name=$_SESSION['user_name'];
-   //  $sellerid=$_SESSION['sellerid'];
-       $buyer_user_name=$_SESSION['buyer_user_name'];
-     $buyerid=$_SESSION['buyerid'];?>
-
+      $user_name=$_SESSION['user_name'];
+    $sellerid=$_SESSION['sellerid'];
+      ?>
   	</body>
   	</html>

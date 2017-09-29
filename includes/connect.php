@@ -3,7 +3,7 @@ ob_start(); //Turns on output buffering
 session_start();
 
 $timezone = date_default_timezone_set("Asia/Kolkata");
- $con = mysqli_connect("localhost","root","","ringelwebsite");  //connection variable
+ $con = mysqli_connect("localhost:3308","root","","ringelwebsite");  //connection variable
 
  if(mysqli_connect_errno())
  {
