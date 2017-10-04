@@ -177,13 +177,13 @@ $num_follow= mysqli_num_rows($follow_result);
 								    		
 								    	</div>
 
-								    	<div class="col-md-2">
+								    	<!--<div class="col-md-2">
 								    		<button class="btn btn-success btn-block" data-toggle="modal" data-target="#send_message">
 								    		<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-								    		 Send Message</button>
+								    		 Send Message</button>-->
 
 								        <!-- Clicking review button above launches comment modal -->
-								            <div id="send_message" class="modal fade" role="dialog">
+								           <!-- <div id="send_message" class="modal fade" role="dialog">
 								            <div class="modal-dialog">
 
 								             
@@ -192,9 +192,9 @@ $num_follow= mysqli_num_rows($follow_result);
 								                  <button type="button" class="close" data-dismiss="modal">&times;</button>
 								                  <h4 class="modal-title">Add your Message here!!</h4>
 								                </div>
-								                <div class="modal-body">
+								                <div class="modal-body">-->
 								                <!--  form starts here-->
-								                <form id = "message_form" action="" method="POST" enctype="multipart/form-data">
+								               <!--<form id = "message_form" action="" method="POST" enctype="multipart/form-data">
 								                  <div class="form-group">
 								                    <input type="text" name="buyer_name" placeholder="Enter buyer name to send Message to..." required >
 								                  </div>
@@ -202,22 +202,22 @@ $num_follow= mysqli_num_rows($follow_result);
 								                  <div class="form-group">
 								                    <textarea class="form-control" name="comment_body" placeholder="your comment goes here..." required></textarea>
 								                  </div>
-								                  <input type="submit" class="btn btn-block btn-success" value="submit" name="message_submit" >
+								                  <input type="submit" class="btn btn-block btn-success" value="submit" name="message_submit" > -->
 								                  <!--  form ends here-->
-								                </form>
+								               <!-- </form> -->
 								                <!-- logic to insert comment-->
 								                 
 
-								                </div>
+								               <!-- </div>
 								                
 								              </div>
 
 								            </div>
-								          </div>
+								          </div> -->
 
 								        <!--End of comment modal -->
 								       
-								    	</div>
+								    	<!--</div>-->
 										<?php
 
 										
@@ -315,6 +315,12 @@ $num_follow= mysqli_num_rows($follow_result);
 
 
 								    	</div>
+										
+										
+										<div class="col-md-2">
+								    		<button class="btn btn-success btn-block" data-toggle="modal" data-target="#">
+								    		<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+								    		  Message</button>
 								
 
 
@@ -331,7 +337,7 @@ $num_follow= mysqli_num_rows($follow_result);
 				      
 					      <div class="panel-body">
 
-					      	
+                              <!--					      	
 								    	<div class="col-md-3">
 								    			<button class="btn btn-info btn-block">
 								    			<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
@@ -373,7 +379,7 @@ $num_follow= mysqli_num_rows($follow_result);
 								
 								
 
-
+                               -->
 
 					      </div>
 			    </div>

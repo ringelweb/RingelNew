@@ -12,14 +12,12 @@
         
  if (isset($_POST['new_password'])) {
 	$new_password = strip_tags($_POST['new_password']);
-        $new_password1= md5($new_password);
+        $new_password= md5($new_password);
 	$_SESSION['new_password']  = $new_password;
-
 	$confirm_password = strip_tags($_POST['confirm_password']);
 	$_SESSION['confirm_password']  = $confirm_password;
         
  }
-
 $result = mysqli_query($con,"SELECT* FROM seller_info WHERE sellerid ='".$sellerid."'"); 
 $row=mysqli_fetch_array($result);
 $ownername = $row['ownername'];
@@ -29,20 +27,18 @@ $address = $row['address'];
 $mobile = $row['mobile'];
 $email = $row['email']; 
 $bank_details_filled = $row['bank_details_filled'];
-        $result1 = mysqli_query($con,"SELECT * FROM org_info WHERE sellerid ='".$sellerid."'"); 
-        $row1= mysqli_fetch_array($result1);
-        $orgname = $row1['orgname'];
+
+$result1 = mysqli_query($con,"SELECT * FROM org_info WHERE sellerid ='".$sellerid."'"); 
+$row1= mysqli_fetch_array($result1);
+$orgname = $row1['orgname'];
 $category = $row1['category'];
 $contact = $row1['contact'];
 $orgaddress = $row1['address'];
 $orgemail= $row1['email'];
 $siteurl=$row1['siteurl'];
-
 $description=$row1['description']; 
-
 $display_success_message = array();
 $error_array=array();
-
         //array_push($display_success_message, "");
  //if filling data for the first time
 //this might cause an error because initially it is empty but data is getting updated into the database!
@@ -70,19 +66,13 @@ else
 	$run_query= mysqli_fetch_array($query_acc);
     $acc_no = $run_query['bankaccount'];
     $_SESSION['acc_no'] = $acc_no;
-
 	$ifsc = $run_query['ifsc'];
 	$_SESSION['ifsc'] = $ifsc;
-
 	$holder_name = $run_query['holdername'];
 	$_SESSION['holder_name'] = $holder_name;
-
 	$branch_address= $run_query['branchaddress'];
 	$_SESSION['branch_address'] = $branch_address;
-
 } 
-
-
  	
 $p_check = mysqli_query($con,"SELECT password FROM users WHERE id='$sellerid'");
         $num_rows4 = mysqli_num_rows($p_check);
@@ -92,68 +82,53 @@ $p_check = mysqli_query($con,"SELECT password FROM users WHERE id='$sellerid'");
         $_SESSION['cover_img']= $cover_img;
         move_uploaded_file($_FILES['image']['tmp_name'], $target); 
                 $result4= mysqli_query($con,"UPDATE org_info SET coverimage='".$cover_img."' WHERE sellerid='$sellerid'"); 
-
         
          }
-
  	//validate password
-
-
-
         //logic to insert or update bank details 
-
 if(isset($_POST['update'])){
         $store_email = strip_tags($_POST['org_email']);  
  	$_SESSION['org_email'] = $store_email;
-
+	
  	$sell_email = strip_tags($_POST['owner_email']); 
  	$_SESSION['owner_email'] = $sell_email;
-
-
+	
  	$store_address = strip_tags($_POST['org_address']);
  	$_SESSION['org_address'] = $store_address;
-
+	
  	$sell_address = strip_tags($_POST['sell_address']);
  	$_SESSION['sell_address'] = $sell_address;
-
+	
  	$store_contact = strip_tags($_POST['contact']);
  	$_SESSION['contact'] = $store_contact;
-
+	
 	if(isset($_POST['mobile'])){
  	$sell_mobile = strip_tags($_POST['mobile']);
  	$_SESSION['mobile'] = $sell_mobile;
 	}
+	
 	if(isset($_POST['website'])){
  	$website = strip_tags($_POST['website']);
  	$_SESSION['website'] = $website;
 	}
-
+	
  	$descrip = strip_tags($_POST['org_description']);
  	$_SESSION['org_description'] = $descrip;
          
        
      /*   $w_check = mysqli_query($con,"SELECT siteurl FROM org_info WHERE siteurl='$website'");
-
  			//count the no. of rows returned
-
  			$num_rows3 = mysqli_num_rows($w_check);
-
  			if($num_rows3 > 0)
  			{
  				array_push($error_array, "This website is already in use<br>");
  			}
                         if(filter_var($store_email,FILTER_VALIDATE_EMAIL)) {
-
  			$store_email = filter_var($store_email,FILTER_VALIDATE_EMAIL);
-
  			//check if email already exists
-
  			$e_check = mysqli_query($con,"SELECT email FROM org_info WHERE email='$store_email'");
-
  			//count the no. of rows returned
-
  			$num_rows = mysqli_num_rows($e_check);
-
  			if($num_rows > 0)
  			{
  				array_push($error_array, "This Email already in use<br>");
@@ -163,19 +138,12 @@ if(isset($_POST['update'])){
  		{
  			array_push($error_array, "INAVLID FORMAT!<br>");
  		}
-
  		if(filter_var($sell_email,FILTER_VALIDATE_EMAIL)) {
-
  			$sell_email = filter_var($sell_email,FILTER_VALIDATE_EMAIL);
-
  			//check if email already exists
-
  			$e_check2 = mysqli_query($con,"SELECT email FROM seller_info WHERE email='$sell_email'");
-
  			//count the no. of rows returned
-
  			$num_rows2 = mysqli_num_rows($e_check2);
-
  			if($num_rows2 > 0)
  			{
  				array_push($error_array, "Email already in use<br>");
@@ -185,11 +153,9 @@ if(isset($_POST['update'])){
  		{
  			array_push($error_array, "INAVLID FORMAT<br>");
  		}
-
  		if(strlen($store_contact) != 10)  {
  		array_push($error_array, "Enter a valid 10 digit contact no.<br>");
  	}
-
  		if(strlen($sell_mobile) != 10) {
  		array_push($error_array, "Enter a valid 10 digit mobile no.<br>");
  	} */
@@ -205,35 +171,25 @@ if($num_rows4 == 0)
  	}
         else{
             
-         $result = mysqli_query($con,"UPDATE users SET password ='$new_password1' WHERE password='$old_password'");
+         $result = mysqli_query($con,"UPDATE users SET password ='$new_password' WHERE password='$old_password'");
         }
  	if ($new_password!=$confirm_password) {
-
  		array_push($error_array, "Passwords dont match!!<br>");
  	}
-
-
-
 if($bank_details_filled == 'no'){
-
 	
-
  	$insert_bank_details_query = mysqli_query($con,"INSERT INTO seller_accinfo VALUES ('$sellerid','$acc_no','$ifsc','$holder_name','$branch_address')");
  	array_push($display_success_message, "Details have been updated successfully<br>");
-
  	//update seller_info table to indicate that account details have been updated!!
  	$update_seller_info = mysqli_query($con,"UPDATE seller_info SET bank_details_filled = 'yes' WHERE sellerid ='".$sellerid."'");
 }
-
 else
 {
 	$insert_bank_details_query = mysqli_query($con,"UPDATE seller_accinfo SET bankaccount = '".$acc_no."' , ifsc = '".$ifsc."' , holdername = '".$holder_name."' , branchaddress = '".$branch_address."' WHERE sellerid = '".$sellerid."' ");
  	array_push($display_success_message, "Details have been updated successfully<br>");
 }
-
 }
  }
-
 ?>
  <!DOCTYPE html>
  <html>
