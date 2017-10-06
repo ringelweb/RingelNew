@@ -512,6 +512,7 @@ $num_follow= mysqli_num_rows($follow_result);
   		</div>
   	</div>
       <?php 
+	   include("includes/footer.php");
       $user_name=$_SESSION['user_name'];
     $sellerid=$_SESSION['sellerid'];
       ?>
