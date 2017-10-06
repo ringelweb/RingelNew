@@ -68,24 +68,7 @@ $error_array=array();
         //array_push($display_success_message, "");
  //if filling data for the first time
 //this might cause an error because initially it is empty but data is getting updated into the database!
-/*if($bank_details_filled == 'no')
-{
-	if (isset($_POST['acc_no'])) {
-	$acc_no = strip_tags($_POST['acc_no']); 
- 	$_SESSION['acc_no'] = $acc_no;
-	}
-	if (isset($_POST['ifsc'])) {
- 	$ifsc = strip_tags($_POST['ifsc']); 
- 	$_SESSION['ifsc'] = $ifsc;
-	}
-	if (isset($_POST['holder_name'])) {
- 	$holder_name = strip_tags($_POST['holder_name']); 
- 	$_SESSION['holder_name'] = $holder_name;
-	}
-	if (isset($_POST['branch_address'])) {
- 	$branch_address = strip_tags($_POST['branch_address']); 
- 	$_SESSION['branch_address'] = $branch_address;
-}}*/
+
 
 	//if already filled ,that is not logging in for the first time then retrieve already stored data and show
 	$query_acc = mysqli_query($con,"SELECT * FROM seller_accinfo WHERE sellerid ='".$sellerid."'");
@@ -108,7 +91,7 @@ $p_check = mysqli_query($con,"SELECT password FROM users WHERE id='$sellerid'");
         $_SESSION['cover_img']= $cover_img;
         move_uploaded_file($_FILES['image']['tmp_name'], $target); 
                 $result4= mysqli_query($con,"UPDATE org_info SET coverimage='".$cover_img."' WHERE sellerid='$sellerid'"); 
-        
+        header('location: seller_account1.php?msg=Profile Image Updated');
          }
  	//validate password
         //logic to insert or update bank details 
