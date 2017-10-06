@@ -1,48 +1,74 @@
 <?php
 	require ("includes/connect.php");
-	
+	$err1="";
 	if (isset($_SESSION['user_name'])) {
-     $user_name=$_SESSION['user_name'];
+		$user_name=$_SESSION['user_name'];
      $sellerid=$_SESSION['sellerid'];
-     if (isset($_POST['old_password'])) {
+	 
+	if (isset($_POST['update_password'])) {
+     
+     
         $old_password = strip_tags($_POST['old_password']);
 	   $old_password= md5($old_password);
 	   $_SESSION['old_password']  = $old_password;
-	 }
+
         
- if (isset($_POST['new_password'])) {
+ 
 	$new_password = strip_tags($_POST['new_password']);
         $new_password= md5($new_password);
 	$_SESSION['new_password']  = $new_password;
 	$confirm_password = strip_tags($_POST['confirm_password']);
+	$confirm_password=md5($confirm_password);
 	$_SESSION['confirm_password']  = $confirm_password;
-        
- }
-$result = mysqli_query($con,"SELECT* FROM seller_info WHERE sellerid ='".$sellerid."'"); 
+	 if($new_password==$confirm_password){
+        $result = mysqli_query($con,"UPDATE users SET password ='$new_password' WHERE password='$old_password'");
+			header('location: seller_account1.php?msg=Password Updated!');
+
+	 }
+	else{
+        //header('location: seller_account1.php?msg=incorrect password');
+		$err1="Password did not match!";
+	}		
+	 
+	}
+$result = mysqli_query($con,"SELECT * FROM seller_info WHERE sellerid ='".$sellerid."'"); 
 $row=mysqli_fetch_array($result);
 $ownername = $row['ownername'];
 $gender = $row['gender'];
 $dob = $row['dob'];
-$address = $row['address'];
+$sell_address = $row['address'];
+$_SESSION['sell_address'] = $sell_address;
 $mobile = $row['mobile'];
-$email = $row['email']; 
+$_SESSION['mobile'] = $mobile;
+$email1 = $row['email']; 
+$_SESSION['owner_email'] = $email1;
 $bank_details_filled = $row['bank_details_filled'];
 
 $result1 = mysqli_query($con,"SELECT * FROM org_info WHERE sellerid ='".$sellerid."'"); 
 $row1= mysqli_fetch_array($result1);
 $orgname = $row1['orgname'];
 $category = $row1['category'];
+
+$org_address = $row1['address'];
+$_SESSION['org_address'] = $org_address;
+
 $contact = $row1['contact'];
-$orgaddress = $row1['address'];
-$orgemail= $row1['email'];
+$_SESSION['contact'] = $contact;
+
+$org_email= $row1['email'];
+$_SESSION['org_email'] = $org_email;
+
 $siteurl=$row1['siteurl'];
+$_SESSION['siteurl'] = $siteurl;
+
 $description=$row1['description']; 
+$_SESSION['org_description'] = $description;
 $display_success_message = array();
 $error_array=array();
         //array_push($display_success_message, "");
  //if filling data for the first time
 //this might cause an error because initially it is empty but data is getting updated into the database!
-if($bank_details_filled == 'no')
+/*if($bank_details_filled == 'no')
 {
 	if (isset($_POST['acc_no'])) {
 	$acc_no = strip_tags($_POST['acc_no']); 
@@ -59,9 +85,9 @@ if($bank_details_filled == 'no')
 	if (isset($_POST['branch_address'])) {
  	$branch_address = strip_tags($_POST['branch_address']); 
  	$_SESSION['branch_address'] = $branch_address;
-}}
-else    
-{	//if already filled ,that is not logging in for the first time then retrieve already stored data and show
+}}*/
+
+	//if already filled ,that is not logging in for the first time then retrieve already stored data and show
 	$query_acc = mysqli_query($con,"SELECT * FROM seller_accinfo WHERE sellerid ='".$sellerid."'");
 	$run_query= mysqli_fetch_array($query_acc);
     $acc_no = $run_query['bankaccount'];
@@ -72,7 +98,7 @@ else
 	$_SESSION['holder_name'] = $holder_name;
 	$branch_address= $run_query['branchaddress'];
 	$_SESSION['branch_address'] = $branch_address;
-} 
+ 
  	
 $p_check = mysqli_query($con,"SELECT password FROM users WHERE id='$sellerid'");
         $num_rows4 = mysqli_num_rows($p_check);
@@ -86,36 +112,47 @@ $p_check = mysqli_query($con,"SELECT password FROM users WHERE id='$sellerid'");
          }
  	//validate password
         //logic to insert or update bank details 
-if(isset($_POST['update'])){
-        $store_email = strip_tags($_POST['org_email']);  
- 	$_SESSION['org_email'] = $store_email;
-	
- 	$sell_email = strip_tags($_POST['owner_email']); 
- 	$_SESSION['owner_email'] = $sell_email;
-	
- 	$store_address = strip_tags($_POST['org_address']);
- 	$_SESSION['org_address'] = $store_address;
-	
+if(isset($_POST['update_personal'])){
+       
  	$sell_address = strip_tags($_POST['sell_address']);
  	$_SESSION['sell_address'] = $sell_address;
 	
- 	$store_contact = strip_tags($_POST['contact']);
- 	$_SESSION['contact'] = $store_contact;
+ 	$mobile = strip_tags($_POST['mobile']);
+ 	$_SESSION['mobile'] = $mobile;
 	
-	if(isset($_POST['mobile'])){
- 	$sell_mobile = strip_tags($_POST['mobile']);
- 	$_SESSION['mobile'] = $sell_mobile;
-	}
+	$email1 = strip_tags($_POST['owner_email']); 
+ 	$_SESSION['owner_email'] = $email1;
 	
-	if(isset($_POST['website'])){
- 	$website = strip_tags($_POST['website']);
- 	$_SESSION['website'] = $website;
-	}
+	
+	$result2=mysqli_query($con,"UPDATE seller_info SET address= '".$sell_address."' , mobile='".$mobile."' , email= '".$email1."'  WHERE sellerid='$sellerid'");
+   
+    header('location: seller_account1.php?msg=Personal Details Updated');
+}
+	
+	if(isset($_POST['update_store'])){
+	
+	$org_email = strip_tags($_POST['org_email']);  
+ 	$_SESSION['org_email'] = $org_email;
+	
+ 	$org_address = strip_tags($_POST['org_address']);
+ 	$_SESSION['org_address'] = $org_address;
+	
+	
+	$contact = strip_tags($_POST['contact']);
+ 	$_SESSION['contact'] = $contact;
+	
+	
+    $siteurl= strip_tags($_POST['siteurl']);
+ 	$_SESSION['siteurl'] = $siteurl;
+	
 	
  	$descrip = strip_tags($_POST['org_description']);
  	$_SESSION['org_description'] = $descrip;
-         
-       
+	
+	$result3= mysqli_query($con,"UPDATE org_info SET address= '".$org_address."' , contact='".$contact."' , email= '".$org_email."', siteurl='".$siteurl."', description='".$descrip."' WHERE sellerid='$sellerid'"); 
+    header('location: seller_account1.php?msg=Store Details Updated');	
+    }
+	
      /*   $w_check = mysqli_query($con,"SELECT siteurl FROM org_info WHERE siteurl='$website'");
  			//count the no. of rows returned
  			$num_rows3 = mysqli_num_rows($w_check);
@@ -161,10 +198,11 @@ if(isset($_POST['update'])){
  	} */
        
         
-        $result2=mysqli_query($con,"UPDATE seller_info SET address= '".$sell_address."' , mobile='".$mobile."' , email= '".$sell_email."'  WHERE sellerid='$sellerid'");
-        $result3= mysqli_query($con,"UPDATE org_info SET address= '".$store_address."' , contact='".$store_contact."' , email= '".$store_email."', siteurl='".$siteurl."', description='".$descrip."' WHERE sellerid='$sellerid'"); 
+        
+        
+        
 	
-if($num_rows4 == 0)
+/*if($num_rows4 == 0)
  	{
  		array_push($error_array, "Incorrect Password!!<br>");
                 
@@ -176,6 +214,8 @@ if($num_rows4 == 0)
  	if ($new_password!=$confirm_password) {
  		array_push($error_array, "Passwords dont match!!<br>");
  	}
+*/	
+if(isset($_POST['update_bank'])){	
 if($bank_details_filled == 'no'){
 	
  	$insert_bank_details_query = mysqli_query($con,"INSERT INTO seller_accinfo VALUES ('$sellerid','$acc_no','$ifsc','$holder_name','$branch_address')");
@@ -185,8 +225,23 @@ if($bank_details_filled == 'no'){
 }
 else
 {
+	
+	$acc_no = strip_tags($_POST['acc_no']); 
+ 	$_SESSION['acc_no'] = $acc_no;
+	
+ 	$ifsc = strip_tags($_POST['ifsc']); 
+ 	$_SESSION['ifsc'] = $ifsc;
+	
+ 	$holder_name = strip_tags($_POST['holder_name']); 
+ 	$_SESSION['holder_name'] = $holder_name;
+	
+ 	$branch_address = strip_tags($_POST['branch_address']); 
+ 	$_SESSION['branch_address'] = $branch_address;
+	
 	$insert_bank_details_query = mysqli_query($con,"UPDATE seller_accinfo SET bankaccount = '".$acc_no."' , ifsc = '".$ifsc."' , holdername = '".$holder_name."' , branchaddress = '".$branch_address."' WHERE sellerid = '".$sellerid."' ");
  	array_push($display_success_message, "Details have been updated successfully<br>");
+	
+	header('location: seller_account1.php?msg=Bank Details Updated');
 }
 }
  }
@@ -239,8 +294,7 @@ else
 					<div class="col-md-6 ">
 			  			<div class="panel panel-danger">
 					      <div class="panel-heading">Personal Settings</div>
-					      <div class="panel-body" style="
-    margin-bottom: 10px">
+					      <div class="panel-body" style="margin-bottom: 10px">
 
 					      		<div class="form-group">
 								    <label>Name</label>
@@ -260,26 +314,26 @@ else
 
 								<div class="form-group">
 								    <label>Address</label>
-								    <textarea class="form-control"  name="sell_address"  ><?php echo $address; ?></textarea>
+								    <textarea class="form-control"  name="sell_address"  ><?php echo $sell_address; ?></textarea>
 								</div><br>
 
 								<div class="form-group">
 								    <label>Mobile</label>
-									 <input name="contact" type="number" class="form-control" value="<?php echo $contact; ?>" >
+									 <input name="mobile" type="text" class="form-control" value="<?php echo $mobile; ?>" size="10" maxlength="10">
 								  
 								</div><br>
 
 								<div class="form-group">
 								    <label>Email</label>
 								    
-								    <input type="email"  name="owner_email" class="form-control" value="<?php echo $email; ?>" >
+								    <input type="email"  name="owner_email" class="form-control" value="<?php echo $email1; ?>" >
 								    
 								</div>
 								<br><br>
 
 
 
- <input type="submit" class="btn btn-block btn-danger " value="Update Personal Detail" name="update">
+ <input type="submit" class="btn btn-block btn-danger " value="Update Personal Detail" name="update_personal">
              
 					      </div>
 						  
@@ -310,19 +364,19 @@ else
 								</div>
 								<div class="form-group">
 								    <label>Address</label>
-								    <textarea class="form-control"  name = "org_address"  ><?php echo $orgaddress; ?></textarea>
+								    <textarea class="form-control"  name = "org_address"  ><?php echo $org_address; ?></textarea>
 								</div>
 
 								<div class="form-group">
 								    <label>Contact</label>
                                 
-                                  <input type="number" name="contact" class="form-control" value="<?php echo $contact; ?>">								  
+                                  <input  name="contact" type="text" class="form-control" value="<?php echo $contact; ?>" maxlength="10" size="10">								  
 								</div>
 
 								<div class="form-group">
 								    <label>Email</label>
 								   
-                                    <input type="email" name="org_email"  class="form-control" value="<?php echo $orgemail; ?>">	
+                                    <input type="email" name="org_email"  class="form-control" value="<?php echo $org_email; ?>">	
 						
 								    
 								</div>
@@ -330,7 +384,7 @@ else
 								<div class="form-group">
 								    <label>Website</label>
 	
-								    <input type="url" name="org_email"  class="form-control" value="<?php echo $siteurl; ?>">	
+								    <input  name="siteurl" type="url"  class="form-control" value="<?php echo $siteurl; ?>">	
 								    
 								</div>
 
@@ -339,7 +393,7 @@ else
 								    <textarea class="form-control"  name="org_description"  ><?php echo $description; ?></textarea>
 								    
 								</div>
- <input type="submit" class="btn btn-block btn-danger " value="Update Store Details" name="update">
+ <input type="submit" class="btn btn-block btn-danger " value="Update Store Details" name="update_store">
              
 					      </div>
 						  
@@ -357,29 +411,29 @@ else
 
 					      	<div class="">
 								    <label>Account no.</label>
-								    <input type="text" class="form-control" name="acc_no" placeholder="<?php echo $acc_no; ?>">
+								    <input type="text" class="form-control" name="acc_no" value="<?php echo $acc_no; ?>">
 								    
 							</div>
 
 							<div class="">
 								    <label>IFSC</label>
-								    <input type="text" class="form-control" name="ifsc" placeholder="<?php echo $ifsc; ?>">
+								    <input type="text" class="form-control" name="ifsc" value="<?php echo $ifsc; ?>">
 								    
 							</div>
 
 							<div class="">
 								    <label>Holder's Name</label>
-								    <input type="text" class="form-control" name="holder_name" placeholder="<?php echo $holder_name; ?>">
+								    <input type="text" class="form-control" name="holder_name" value="<?php echo $holder_name; ?>">
 								    
 							</div>
 
 							<div class="form-group">
 								    <label>Branch Address</label>
-								    <textarea class="form-control"  name="branch_address" placeholder="<?php echo $branch_address; ?> "></textarea>
+								    <textarea class="form-control"  name="branch_address"><?php echo $branch_address; ?></textarea>
 								    
 							</div>
 					      		
- <input type="submit" class="btn btn-block btn-danger " value="Update Bank Details" name="update">
+ <input type="submit" class="btn btn-block btn-danger " value="Update Bank Details" name="update_bank">
              
 					      </div>
 					    </div>
@@ -411,9 +465,10 @@ else
 								   
 								    
 							</div>
+							<span class="error"><?php echo $err1;?></span>
 							<br><br>
-							 <input type="submit" class="btn btn-block btn-danger " value="Confirm" name="update">
-            
+							 <input type="submit" class="btn btn-block btn-danger " value="Confirm" name="update_password">
+                             
 
 
 					      </div>
@@ -439,6 +494,7 @@ else
                                                                                       echo "</div>";
                                  
                                                                                           } */
+
                               
                                                                                        ?>
          <form action="seller_account1.php" class="form-group" method="POST">
