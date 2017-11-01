@@ -224,12 +224,12 @@ $num_follow= mysqli_num_rows($follow_result);
 
 										?>
 										<div class="col-md-2">
-								    		<button class="btn btn-success btn-block" data-toggle="modal" data-target="#check_inbox" >
-								    		<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-								    		View Inbox
+								    		
+								    		
+								    		<a class="btn btn-success btn-block" href="msg.php"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> View Inbox
 								    		<?php
 
-								    			$query_notif = "SELECT * FROM pvt_msgs WHERE _to = '".$user_name."' ";
+								    			$query_notif = "SELECT * FROM pvt_msgs WHERE _to = '".$sellerid."' ";
 										if($run_query_notif = mysqli_query($con,$query_notif))
 											{
 
@@ -238,7 +238,7 @@ $num_follow= mysqli_num_rows($follow_result);
 
 										    }
 
-										    $query_notif_badge = "SELECT * FROM pvt_msgs WHERE _to = '".$user_name."' AND  _read = 'no' ";
+										    $query_notif_badge = "SELECT * FROM pvt_msgs WHERE _to = '".$sellerid."' AND  _read = 'no' ";
 										if($run_query_notif_badge = mysqli_query($con,$query_notif_badge))
 											{
 
@@ -249,70 +249,8 @@ $num_follow= mysqli_num_rows($follow_result);
 										    
 										    if($no_of_unread_messages_badge > 0)
 								    		 	echo '<span class="notification_badge" id="unread_message">'."$no_of_unread_messages".'</span>'; ?>
-								    		</button>
-								    		 <div id="check_inbox" class="modal fade" role="dialog">
-								            <div class="modal-dialog">
-
-								             
-								              <div class="modal-content">
-								                <div class="modal-header">
-								                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-								                  <h4 class="modal-title">Your Inbox!</h4>
-								                </div>
-								                <div class="modal-body">
-								                <!--  form starts here-->
-								               
-								                 <?php
-								                 	while($row_messages = mysqli_fetch_array($run_query_notif))
-								                 		{
-
-								                 		?>
-								                 		<div class="panel panel-warning">
-													      <div class="panel-heading"><strong>From:</strong> <?php echo $row_messages['_from'];
-
-													       ?>
-													      </div>
-													      <div class="panel-body">
-													      	<div class="dropdown">
-															 <button class="btn btn-info dropdown-toggle" id ="message_drop" name = "dropdown_button" method="POST" type="button" data-toggle="dropdown">See Message
-															  <span class="caret"></span></button>
-
-															 	<ul class="dropdown-menu" >
-															    <li><?php echo $row_messages['message'];
-															    	
-															    //$msgid = $row_messages['msgid'];
-															    $msgid = $row_messages['msgid'];
-															    $update_query = "UPDATE pvt_msgs SET _read= 'yes' WHERE msgid = '".$msgid."' ";
-															    $run_query_update = mysqli_query($con,$update_query);
-
-															     ?></li>
-																<button class="btn btn-success"><a href="seller_profile.php">Mark as read!</a></button>
-															  </ul>
-															  
-													 
-															</div> 
-													      </div>
-													    </div>
-													    <?php
-
-
-															  
-													    			}
-
-
-
-													    ?>
-
-													   
-
-								                </div>
-
-								                
-								              </div>
-
-								            </div>
-								          </div>
-
+							
+                                            </a>
 
 								    	</div>
 										

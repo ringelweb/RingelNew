@@ -124,11 +124,10 @@
 					 -->
                      <!--inbox for buyer goes here-->
                      <div class="col-md-2 row-control">
-                        <button class="btn btn-success btn-block" data-toggle="modal" data-target="#check_inbox" >
-                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                     <a class="btn btn-success btn-block" href="msg_buyer.php"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                         Notification
                         <?php
-                           $query_notif = "SELECT * FROM pvt_msgs WHERE _to = '".$buyer_user_name."'  ";
+                           $query_notif = "SELECT * FROM pvt_msgs WHERE _to = '".$buyerid."'  ";
                            if($run_query_notif = mysqli_query($con,$query_notif))
                            {
                            
@@ -137,7 +136,7 @@
                            
                            }
                            
-                           $query_notif_badge = "SELECT * FROM pvt_msgs WHERE _to = '".$buyer_user_name."' AND _read = 'no' ";
+                           $query_notif_badge = "SELECT * FROM pvt_msgs WHERE _to = '".$buyerid."' AND _read = 'no' ";
                            if($run_query_notif_badge = mysqli_query($con,$query_notif_badge))
                            {
                            
@@ -150,56 +149,8 @@
                            
                            if($no_of_unread_messages_bagde > 0)
                            	echo '<span class="notification_badge" id="unread_message">'."$no_of_unread_messages".'</span>'; ?>
-                        </button>
-                        <div id="check_inbox" class="modal fade" role="dialog">
-                           <div class="modal-dialog">
-                              <div class="modal-content">
-                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Your Inbox!</h4>
-                                 </div>
-                                 <div class="modal-body">
-                                    <!--  form starts    here-->
-                                    <?php
-                                       while($row_messages = mysqli_fetch_array($run_query_notif))
-                                       	{
-                                       
-                                       	?>
-                                    <div class="panel panel-warning">
-                                       <div class="panel-heading"><strong>From:</strong> <?php echo $row_messages['_from'];
-                                          ?>
-                                       </div>
-                                       <div class="panel-body">
-                                         
-                                             <ul style="text-decoration:none"> 
-                                                <li style="text-decoration:none">
-								
-												<?php echo $row_messages['message'];
-										echo "&nbsp&nbsp&nbsp<a style='text-decoration:none'  href='buyer_profile.php'>Mark As Read</a>";
-                                                   //$msgid = $row_messages['msgid'];
-                                                   $msgid = $row_messages['msgid'];
-                                                   $update_query = "UPDATE pvt_msgs SET _read= 'yes' WHERE msgid = '".$msgid."' ";
-                                                   $run_query_update = mysqli_query($con,$update_query);
-                                                   
-                                                  ?>
-    
-												<a onclick="confirm('are you sure?')" style="text-decoration:none"  class="float-right"  href="buyer_profile.php"><span style="float: right;" class="glyphicon glyphicon-trash"> </span></a>
-												  </li>
-                                              
-                                             </ul>
-                                         
-                                       </div>
-                                    </div>
-                                    <?php
-                                       }
-                                       
-                                       
-                                       
-                                       ?>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
+                     </a>
+        
                      </div>
                      <!--End of inbox-->
                   </div>
@@ -313,4 +264,4 @@ Account Setting</button></a></center>
          $buyer_user_name=$_SESSION['buyer_user_name'];
          $buyerid=$_SESSION['buyerid'];?>
    </body>
-</html>
+</html>`
