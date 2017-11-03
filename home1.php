@@ -133,7 +133,7 @@
                      <p class="w3-center"> <img src="<?php echo "img/org_coverimg/".$org_info_row['coverimage'].""; ?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                      <hr>
                      <p><i class="fa fa-user w3-margin-right w3-text-theme "></i> <span class="link w3-text-theme"><?php echo  strtoupper($org_info_row['orgname']);?></span></p>
-                     <p><i class="fa fa-link w3-margin-right w3-text-theme "> <span class="link w3-text-theme"><?php echo $org_info_row['siteurl']; ?></span></i></p>
+                     <p><i class="fa fa-link w3-margin-right w3-text-theme "> <span class="link w3-text-theme">        <?php echo $org_info_row['siteurl']; ?></span></i></p>
 					 <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i><span class="w3-text-theme"><?php echo $org_info_row['address']; ?></span></p>
                   </div>
 				   <?php if(isset($_SESSION['user_name'])) { ?>
